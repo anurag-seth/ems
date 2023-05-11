@@ -37,7 +37,7 @@ public class EmpDetails {
     @Column(name="role", nullable = false)
     private String role;
 
-    @OneToOne( cascade = CascadeType.MERGE, mappedBy = "empDetails")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "empDetails")
     @JsonManagedReference
     private Address address;
 

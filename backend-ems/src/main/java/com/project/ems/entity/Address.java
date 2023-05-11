@@ -36,7 +36,7 @@ public class Address {
     private String pincode;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private EmpDetails empDetails;

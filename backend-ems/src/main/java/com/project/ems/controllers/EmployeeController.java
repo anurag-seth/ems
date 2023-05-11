@@ -1,5 +1,6 @@
 package com.project.ems.controllers;
 
+import com.project.ems.entity.Address;
 import com.project.ems.entity.EmpDetails;
 import com.project.ems.services.AddressService;
 import com.project.ems.services.EmployeeService;
@@ -22,11 +23,16 @@ public class EmployeeController {
     @PostMapping("/addEmployee")
     public EmpDetails addEmployee(@RequestBody EmpDetails empDetails){
         empDetails.setId(0);
-        addressService.findById(empDetails.getId());
+        Address address  = new Address();
+        address = addressService.findById(empDetails.getAddress().getId());
+        empDetails.setAddress(address);
         return employeeService.save(empDetails);
     }
     @PutMapping("/updateEmployee")
     public EmpDetails updateEmployee(@RequestBody EmpDetails empDetails){
+        Address address  = new Address();
+        address = addressService.findById(empDetails.getAddress().getId());
+        empDetails.setAddress(address);
         return employeeService.save(empDetails);
     }
     @DeleteMapping("/deleteEmployee/{id}")
