@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * implementation of the EmployeeService interface
+ */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 

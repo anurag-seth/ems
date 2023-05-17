@@ -1,14 +1,21 @@
 package com.project.ems.controllers;
 
 import com.project.ems.entity.Address;
+import com.project.ems.entity.Contact;
 import com.project.ems.entity.EmpDetails;
+import com.project.ems.repositories.AddressRepository;
 import com.project.ems.services.AddressService;
+import com.project.ems.services.ContactService;
 import com.project.ems.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+/**
+ * Controller for the employee, ("/employees" for mapping)
+ */
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
@@ -16,27 +23,69 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private AddressService addressService;
-    @GetMapping("/findAllEmployees")
+    @Autowired
+    private ContactService contactService;
+    @Autowired
+    private AddressRepository addressRepository;
+
+    /**
+     * @return list of all employees along with their address and contact
+     */
+    @GetMapping("/findAll")
     public List<EmpDetails> findAll(){
         return employeeService.findAll();
     }
-    @PostMapping("/addEmployee")
-    public EmpDetails addEmployee(@RequestBody EmpDetails empDetails){
+
+    /**
+     * @param id id of the employee that needs to be searched
+     * @return Complete details of the particular employee
+     */
+    @GetMapping("/find/{id}")
+    public EmpDetails findEmployee(@PathVariable int id){
+        return employeeService.findById(id);
+    }
+
+    /**
+     * @param empDetails Details of the employee
+     * @return Details which are added along with respective id
+     */
+    @PostMapping("/add")
+    public EmpDetails addEmployexe(@RequestBody EmpDetails empDetails){
         empDetails.setId(0);
-        Address address  = new Address();
+        Address address = new Address();
         address = addressService.findById(empDetails.getAddress().getId());
         empDetails.setAddress(address);
+        Contact contact = new Contact();
+        contact = contactService.findById(empDetails.getContact().getId());
+        empDetails.setContact(contact);
         return employeeService.save(empDetails);
     }
-    @PutMapping("/updateEmployee")
+
+    /**
+     * @param empDetails updated details of the employee
+     * @return Updated details alomg with the id
+     */
+    @PutMapping("/update")
     public EmpDetails updateEmployee(@RequestBody EmpDetails empDetails){
-        Address address  = new Address();
-        address = addressService.findById(empDetails.getAddress().getId());
-        empDetails.setAddress(address);
+        if(empDetails.getAddress()!=null) {
+            Address address = new Address();
+            address = addressService.findById(empDetails.getAddress().getId());
+            empDetails.setAddress(address);
+        }
+        if(empDetails.getContact()!=null){
+            Contact contact = new Contact();
+            contact = contactService.findById(empDetails.getContact().getId());
+            empDetails.setContact(contact);
+        }
         return employeeService.save(empDetails);
     }
-    @DeleteMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@RequestParam int id){
+
+    /**
+     * @param id id of the particular employee that need to be deleted
+     * @return Show message regarding successful deletion of the particular employee
+     */
+    @DeleteMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable int id){
         employeeService.deleteById(id);
         return "Deleted Employee: " + id;
     }

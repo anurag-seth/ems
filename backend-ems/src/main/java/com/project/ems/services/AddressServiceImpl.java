@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * implementation of the AddressService interface
+ */
 @Service
 public class AddressServiceImpl implements AddressService{
     @Autowired
     private AddressRepository addressRepository;
+
     @Autowired
     private AddressServiceImpl(AddressRepository theAddressRepository){
         this.addressRepository = theAddressRepository;
@@ -30,7 +34,7 @@ public class AddressServiceImpl implements AddressService{
             address = res.get();
         }
         else {
-            // we didn't find the employee
+            // we didn't find the address
             throw new RuntimeException("Did not find id - " + id);
         }
         return address;

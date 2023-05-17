@@ -9,12 +9,18 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+/**
+ * entity for address table used to store address of the employee, one-to-one relationship with the employee table.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="address_info")
 public class Address {
+    /**
+     * used to store contact id of the address.
+     */
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
@@ -36,11 +42,17 @@ public class Address {
     private String pincode;
 
 
+    /**
+     * one-to-one relationship with employee table.
+     */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private EmpDetails empDetails;
 
+    /**
+     * used to store last updated time of the address details
+     */
     @UpdateTimestamp
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
