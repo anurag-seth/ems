@@ -1,5 +1,6 @@
 package com.project.ems.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class EmpDetails {
     /**
      * store id of employee(unique id), can't be null
      */
-    @Column(name="emp_id", unique=true, nullable = false)
+    @Column(name="emp_id", unique=true, nullable = false, updatable = false)
     private int empId;
 
     /**
@@ -42,8 +43,11 @@ public class EmpDetails {
     /**
      * store email of the employee(unique as well can't be null).
      */
-    @Column(name="email", unique=true, nullable = false)
+    @Column(name="email", unique=true, nullable = false, updatable = false)
     private String email;
+
+    @Column(name="password", nullable = false)
+    private String password;
 
     /**
      * store role of the employee(employee, admin, super-admin) to grant various features according to role
@@ -81,7 +85,7 @@ public class EmpDetails {
      * store time and date at which the employee is created.
      */
     @CreationTimestamp
-    @Column(name="created_on")
+    @Column(name="created_on", updatable = false)
     private LocalDateTime createdOn;
 
     /**

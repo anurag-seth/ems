@@ -3,6 +3,7 @@ package com.project.ems.controllers;
 import com.project.ems.entity.Address;
 import com.project.ems.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class AddressController {
      * @return Address of the all employees as a list
      */
     @GetMapping("/findAll")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SUPER-ADMIN')")
     public List<Address> findAll(){
         return addressService.findAll();
     }

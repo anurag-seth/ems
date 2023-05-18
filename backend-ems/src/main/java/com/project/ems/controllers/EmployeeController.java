@@ -8,9 +8,12 @@ import com.project.ems.services.AddressService;
 import com.project.ems.services.ContactService;
 import com.project.ems.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -32,7 +35,10 @@ public class EmployeeController {
      * @return list of all employees along with their address and contact
      */
     @GetMapping("/findAll")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SUPER-ADMIN')")
     public List<EmpDetails> findAll(){
+//        System.out.println("in admin");
+//        System.out.println(employeeService.findAll());
         return employeeService.findAll();
     }
 
@@ -50,14 +56,17 @@ public class EmployeeController {
      * @return Details which are added along with respective id
      */
     @PostMapping("/add")
-    public EmpDetails addEmployexe(@RequestBody EmpDetails empDetails){
+    public EmpDetails addEmployee(@RequestBody EmpDetails empDetails){
         empDetails.setId(0);
-        Address address = new Address();
-        address = addressService.findById(empDetails.getAddress().getId());
-        empDetails.setAddress(address);
-        Contact contact = new Contact();
-        contact = contactService.findById(empDetails.getContact().getId());
-        empDetails.setContact(contact);
+        empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
+        if(empDetails.getAddress()!=null) {
+            Address address = addressService.findById(empDetails.getAddress().getId());
+            empDetails.setAddress(address);
+        }
+        if(empDetails.getContact()!=null){
+            Contact contact = contactService.findById(empDetails.getContact().getId());
+            empDetails.setContact(contact);
+        }
         return employeeService.save(empDetails);
     }
 
@@ -67,6 +76,11 @@ public class EmployeeController {
      */
     @PutMapping("/update")
     public EmpDetails updateEmployee(@RequestBody EmpDetails empDetails){
+//        EmpDetails emp = employeeService.findById(empDetails.getId());
+//        if(emp.getEmpId()!=empDetails.getEmpId() || emp.getEmail()!=empDetails.getEmail()){
+//            throw new RuntimeException("Email and Employee id can't be updated");
+//        }
+        empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
         if(empDetails.getAddress()!=null) {
             Address address = new Address();
             address = addressService.findById(empDetails.getAddress().getId());

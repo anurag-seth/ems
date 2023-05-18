@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -49,6 +50,10 @@ public class Address {
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private EmpDetails empDetails;
+
+    @CreationTimestamp
+    @Column(name="created_on", updatable = false)
+    private LocalDateTime createdOn;
 
     /**
      * used to store last updated time of the address details

@@ -49,7 +49,7 @@ public class Contact {
      * to store the time and date when the particular contact was created.
      */
     @CreationTimestamp
-    @Column(name="created_on")
+    @Column(name="created_on", updatable = false)
     private LocalDateTime createdOn;
 
     /**

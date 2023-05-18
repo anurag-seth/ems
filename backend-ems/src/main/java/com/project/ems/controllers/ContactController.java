@@ -3,6 +3,7 @@ package com.project.ems.controllers;
 import com.project.ems.entity.Contact;
 import com.project.ems.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class ContactController {
      * @return Contacts of the all employees as a list
      */
     @GetMapping("/findAll")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SUPER-ADMIN')")
     List<Contact> findAll(){
         return contactService.findAll();
     }
