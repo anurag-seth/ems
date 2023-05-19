@@ -9,5 +9,5 @@ import java.util.Optional;
  * Employeerepository extending Jpa repository ot perform crud operations.
  */
 public interface EmployeeRepository extends JpaRepository<EmpDetails, Integer> {
-    Optional<EmpDetails> findByEmail(String username);
+    Optional<EmpDetails> findByEmail(String email);
 }

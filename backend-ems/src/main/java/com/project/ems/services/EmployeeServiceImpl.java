@@ -2,6 +2,7 @@ package com.project.ems.services;
 
 import com.project.ems.entity.EmpDetails;
 import com.project.ems.repositories.EmployeeRepository;
+import com.project.ems.security.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private WebSecurityConfig webSecurityConfig;
     @Autowired
     private EmployeeServiceImpl(EmployeeRepository theEmployeeRepository){
         this.employeeRepository = theEmployeeRepository;
@@ -47,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmpDetails save(EmpDetails empDetails) {
         String role = "ROLE_" +  empDetails.getRole();
         empDetails.setRole(role);
-        empDetails.setPassword(passwordEncoder.encode(empDetails.getPassword()));
+        empDetails.setPassword(webSecurityConfig.passwordEncoder().encode(empDetails.getPassword()));
         return employeeRepository.save(empDetails);
     }
 

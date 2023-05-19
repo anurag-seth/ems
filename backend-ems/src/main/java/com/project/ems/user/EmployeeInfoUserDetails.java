@@ -1,4 +1,4 @@
-package com.project.ems.security;
+package com.project.ems.user;
 
 import com.project.ems.entity.EmpDetails;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,15 +10,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserInfoUserDetails implements UserDetails {
+public class EmployeeInfoUserDetails implements UserDetails {
 
     private String email;
     private String password;
     private List<GrantedAuthority> authorities;
+    private boolean active;
 
-    public UserInfoUserDetails(EmpDetails empDetails) {
+    public EmployeeInfoUserDetails(EmpDetails empDetails) {
         email = empDetails.getEmail();
         password = empDetails.getPassword();
+        active = empDetails.isActive();
         authorities = Arrays.stream(empDetails.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
@@ -41,21 +43,21 @@ public class UserInfoUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return active;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return active;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return active;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return active;
     }
 }

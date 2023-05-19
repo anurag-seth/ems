@@ -75,6 +75,9 @@ public class EmpDetails {
     @Column(name="gender")
     private String gender;
 
+    @Column(name="isActive", nullable = false)
+    private boolean active;
+
     @Column(name="martial_status")
     private String martialStatus;
 
@@ -101,4 +104,7 @@ public class EmpDetails {
     @Column(name="created_by")
     private int createdBy;
 
+    public boolean isActive() {
+        return active;
+    }
 }
