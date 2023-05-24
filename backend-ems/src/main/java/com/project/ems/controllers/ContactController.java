@@ -12,6 +12,7 @@ import java.util.List;
  * Controller for the contact, ("/contact" for mapping)
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/contact")
 public class ContactController {
     /**

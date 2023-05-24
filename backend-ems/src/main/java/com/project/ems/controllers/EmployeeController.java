@@ -20,6 +20,7 @@ import java.util.Optional;
  * Controller for the employee, ("/employees" for mapping)
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/employees")
 public class EmployeeController {
     @Autowired
@@ -49,6 +50,11 @@ public class EmployeeController {
     @GetMapping("/find/{id}")
     public EmpDetails findEmployee(@PathVariable int id){
         return employeeService.findById(id);
+    }
+
+    @GetMapping("/findByEmail/{email}")
+    public EmpDetails findEmployeeEmail(@PathVariable String email){
+        return employeeService.findByEmail(email);
     }
 
     /**

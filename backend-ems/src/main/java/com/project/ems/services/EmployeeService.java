@@ -21,6 +21,8 @@ public interface EmployeeService {
      */
     EmpDetails findById(int id);
 
+    EmpDetails findByEmail(String email);
+
     /**
      * @param empDetails body of the employee of that particular entry
      * @return information of that particular employee that is saved

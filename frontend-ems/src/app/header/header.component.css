@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #CDE5FF;
+    padding: 10px 20px;
+    height: 60px;
+}
+
+.navbar-brand {
+    color: #000E1D;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: auto;
+}
+
+.navbar-brand:hover {
+    color: #00050a;
+
+}
+
+.navbar-nav {
+    margin-left: auto;
+}

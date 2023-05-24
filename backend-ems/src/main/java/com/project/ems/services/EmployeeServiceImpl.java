@@ -45,6 +45,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public EmpDetails findByEmail(String email) {
+        return employeeRepository.findByEmail(email).get();
+    }
+
+    @Override
     public EmpDetails save(EmpDetails empDetails) {
         String role = "ROLE_" +  empDetails.getRole();
         empDetails.setRole(role);

@@ -12,6 +12,7 @@ import java.util.List;
  * Controller for the address, ("/address" for mapping)
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/address")
 public class AddressController {
     /**

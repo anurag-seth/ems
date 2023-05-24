@@ -1,0 +1,13 @@
+/* header.component.css */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.content{
+  min-width: 100%;
+  min-height: 100%;
+  background-color: blue;
+}
