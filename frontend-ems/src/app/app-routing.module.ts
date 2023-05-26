@@ -5,13 +5,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AuthguardService } from './services/authguard.service';
 import { LoginguardService } from './services/loginguard.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'login',component: LoginComponent, canActivate:[LoginguardService]},
   {path:'home-page', component:HomePageComponent,canActivate:[AuthguardService], children:[
-    {path:'', component: SidebarComponent}
-  ]}
+    {path:'personal-details', component:EmployeeDetailsComponent}
+  ]},
+  // {path:'personal-details', component:EmployeeDetailsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -2,8 +2,13 @@
     background-color: #CDE5FF;
     padding: 10px 20px;
     height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index:200;
 }
-
+.navbar .logo-text a{
+    color: #313131;
+}
 .navbar-brand {
     color: #000E1D;
     font-size: 24px;

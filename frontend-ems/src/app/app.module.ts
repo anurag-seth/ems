@@ -12,6 +12,7 @@ import { LoginService } from './services/login.service';
 import { SidebarDirective } from './sidebar.directive';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HomePageComponent,
     SidebarDirective,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,

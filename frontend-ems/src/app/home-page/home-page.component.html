@@ -1,8 +1,9 @@
 <div class="home-page">
-  <div class="md-row-5">
-    <app-header></app-header>
-  </div>
-  <div class="sidebar">
-    <app-sidebar ></app-sidebar>
+  <app-header></app-header>
+  <div class="content">
+    <app-sidebar></app-sidebar>
+    <div class="col-md-13" style="padding-top: 60px;">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

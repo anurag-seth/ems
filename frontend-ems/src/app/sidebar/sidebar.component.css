@@ -1,7 +1,7 @@
 .sidebar {
   position: fixed;
-  margin-top: 0;
-  left: 0;
+  margin-top: 60px;
+  left: 0px;
   height: 100%;
   width: 260px;
   background: #365371;
@@ -12,6 +12,10 @@
 
 .sidebar.close {
   width: 78px;
+}
+
+.sidebar.close .nav-links .h4{
+  opacity: 0;
 }
 
 .sidebar .nav-links {
@@ -67,3 +71,4 @@
   opacity: 0;
   pointer-events: none;
 }
+

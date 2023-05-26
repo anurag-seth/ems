@@ -12,13 +12,13 @@ export class HomePageComponent implements OnInit{
   constructor(private employeeService: EmployeeService){}
 
   ngOnInit(): void {
-    this.employeeService.getEmployeeByEmail()
-    .subscribe(
-      (res)=>{
-        console.log(res);
-        this.username = res.firstName;
-        return res;
-      }
-    );
+    // this.employeeService.getEmployeeByEmail()
+    // .subscribe(
+    //   (res)=>{
+    //     console.log(res);
+    //     this.username = res.firstName;
+    //     return res;
+    //   }
+    // );
   }  
 }

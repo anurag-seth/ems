@@ -17,7 +17,7 @@ public class AddressServiceImpl implements AddressService{
     private AddressRepository addressRepository;
 
     @Autowired
-    private AddressServiceImpl(AddressRepository theAddressRepository){
+    AddressServiceImpl(AddressRepository theAddressRepository){
         this.addressRepository = theAddressRepository;
     }
 
