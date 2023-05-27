@@ -13,6 +13,9 @@ import { SidebarDirective } from './sidebar.directive';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { PersonalDetailsComponent } from './employee-details/personal-details/personal-details.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     SidebarDirective,
     HeaderComponent,
     SidebarComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    EmployeeListComponent,
+    PersonalDetailsComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,

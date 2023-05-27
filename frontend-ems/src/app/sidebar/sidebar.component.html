@@ -3,8 +3,14 @@
     <h3>Hello User</h3>
   </div> -->
   <ul class="nav-links">
+    <li *ngIf="role!='EMPLOYEE'">
+      <a routerLink="/home-page/add-employee">
+        <i class="fa fa-solid fa-edit"></i>
+        <span class="link_name">Add Employee</span>
+      </a>
+    </li>
     <li>
-      <a href="#">
+      <a routerLink="/home-page/employee-list">
         <i class="fa fa-solid fa-table"></i>
         <span class="link_name">Employee List</span>
       </a>
@@ -17,3 +23,4 @@
     </li>
   </ul>
 </div>
+<!-- <a routerLink="/home-page/personal-details"></a> -->

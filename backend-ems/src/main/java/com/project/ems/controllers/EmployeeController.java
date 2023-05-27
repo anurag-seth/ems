@@ -36,7 +36,7 @@ public class EmployeeController {
      * @return list of all employees along with their address and contact
      */
     @GetMapping("/findAll")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
     public List<EmpDetails> findAll(){
 //        System.out.println("in admin");
 //        System.out.println(employeeService.findAll());
@@ -106,7 +106,11 @@ public class EmployeeController {
      */
     @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable int id){
-        employeeService.deleteById(id);
+//        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//        employeeService.deleteById(id);
+//        EmpDetails emp = employeeService.findById(id);
+//        emp.setActive(false);
+//        employeeService.save(emp);
         return "Deleted Employee: " + id;
     }
 }

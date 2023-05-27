@@ -10,13 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EmployeeDetailsComponent implements OnInit{
   employee: Employee;
+  createdBy: String;
+  id: number;
+  active: String;
   constructor(private employeeService : EmployeeService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.employeeService.getEmployeeByEmail().subscribe((emp)=>{
-      this.employee = emp;
-      this.employee.role = emp.role.slice(5);
+    this.activatedRoute.params.subscribe((param)=>{
+      this.id=+param['id'];
     });
-    this.employeeService.getAll().subscribe();
+    // console.log(this.id);
+    let email = sessionStorage.getItem('user');
+    this.employeeService.getEmployeeById(this.id).subscribe((emp)=>{
+      this.employee = emp;
+      this.active = emp.active==true?'Active':'Not Active';
+      // this.createdById = emp.createdBy;
+      // console.log(this.createdById);
+      this.employeeService.getEmployeeById(emp.createdBy).subscribe((emp1)=>{
+        this.createdBy = emp1.firstName + " " + emp1.lastName;
+      });
+    });
+  }
+  deleteEmployee(){
+    this.employeeService.deleteEmployee(this.id);
   }
 }

@@ -1,5 +1,6 @@
 export class Employee{
     constructor(
+        public id: number,
         public empId: number,
         public firstName: String,
         public lastName: String,
@@ -9,6 +10,10 @@ export class Employee{
         public gender: String,
         public martialStatus: String,
         public dob: String,
+        public active: boolean,
+        public createdBy: number,
+        public createdOn: String,
+        public updatedOn: String,
         public contact:{
             num: number,
             type: String
