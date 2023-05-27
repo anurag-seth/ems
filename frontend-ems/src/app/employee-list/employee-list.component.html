@@ -1,32 +1,37 @@
 <section style="background-color: #F9FDFF;">
-    <div class="container py-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-8">
         <h2 class="mb-3">All Employees:</h2>
-        <div class="col mb-3" *ngFor="let employee of employees;">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                alt="avatar" *ngIf="employee.gender=='Male'" class="rounded-circle img-fluid"
-                                style="width: 70px;">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
-                                alt="avatar" *ngIf="employee.gender=='Female'" class="rounded-circle img-fluid"
-                                style="width: 70px;">
-                        </div>
-                        <div class="col-lg-5">
-                            <!-- <p class="text-bold">Name: </p> -->
-                            <p class="mb-1">Name: {{employee.firstName}} {{employee.lastName}}</p>
-                            <p class="mb-1">Employee Id: {{employee.empId}}</p>
-                            <p class="mb-1">Role: {{employee.role.slice(5)}}</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <p class="mb-1">Email: {{ employee. email}}</p>
-                            <p class="mb-1">Contact: {{employee.contact.num}}</p>
-                            <button class="btn btn-outline-primary" (click)=showFullDetails(employee.id) *ngIf="role!='EMPLOYEE'">Full Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="col-lg-4 search-bar">
+        <input type="text" [(ngModel)]="search" placeholder="Search Employee..." class="form-control mb-3">
+      </div>
     </div>
+    <div class="col mb-3" *ngFor="let employee of filteredEmployees;">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-2">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                *ngIf="employee.gender=='Male'" class="rounded-circle img-fluid" style="width: 70px;">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp" alt="avatar"
+                *ngIf="employee.gender=='Female'" class="rounded-circle img-fluid" style="width: 70px;">
+            </div>
+            <div class="col-lg-5">
+              <p class="mb-1">Name: {{employee.firstName}} {{employee.lastName}}</p>
+              <p class="mb-1">Employee Id: {{employee.empId}}</p>
+              <p class="mb-1">Role: {{employee.role.slice(5)}}</p>
+            </div>
+            <div class="col-lg-4">
+              <p class="mb-1">Email: {{employee.email}}</p>
+              <p class="mb-1">Contact: {{employee.contact.num}}</p>
+              <button class="btn btn-outline-primary" (click)="showFullDetails(employee.id)"
+                *ngIf="role!='EMPLOYEE'">Full Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

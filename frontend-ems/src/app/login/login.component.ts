@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit{
   }
   login: FormGroup = new FormGroup({ email: new FormControl("", Validators.email), password: new FormControl("", Validators.required) });
   onSubmit() {
-    console.log(this.login.value);
+    // console.log(this.login.value);
     this.loginService.login(this.login.value).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.router.navigate(['/home-page']),() => {
 				this.error = 'Either invalid credentials or something went wrong';
 			}

@@ -12,7 +12,7 @@ export class EmployeeService {
   getEmployeeByEmail(email: String){
     // let email = sessionStorage.getItem('user');
     return this.http.get<any>(`${this.base_url}/findByEmail/${email}`).pipe(map((res) => {
-			console.log(res);
+			// console.log(res);
       return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
         contact:{
           num: res.contact.number,
@@ -48,8 +48,9 @@ export class EmployeeService {
   }
   getAll(){
     return this.http.get<any>(this.base_url + "/findAll").pipe(map((result)=>{
-      // console.log(res);
+      console.log(result);
       return result.map(res=> {
+        // console.log(res)
         return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
           contact:{
             num: res.contact.number,
@@ -67,7 +68,7 @@ export class EmployeeService {
     }));
   }
   deleteEmployee(id: number){
-    this.http.delete<any>(this.base_url + "/delete/${id}");
+    this.http.delete<any>(`${this.base_url}/delete/${id}`);
     return this.router.navigate(['/home-page/employee-list']);
   }
 }

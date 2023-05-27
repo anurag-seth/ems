@@ -58,14 +58,14 @@ public class EmpDetails {
     /**
      * one-to-one relationship with the address table.
      */
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "empDetails")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "empDetails")
     @JsonManagedReference
     private Address address;
 
     /**
      * one-to-one relationship with the contact table.
      */
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "empDetails")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "empDetails")
     @JsonManagedReference
     private Contact contact;
 

@@ -13,6 +13,7 @@ export class EmployeeDetailsComponent implements OnInit{
   createdBy: String;
   id: number;
   active: String;
+  showDelete: boolean;
   constructor(private employeeService : EmployeeService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -28,6 +29,10 @@ export class EmployeeDetailsComponent implements OnInit{
       // console.log(this.createdById);
       this.employeeService.getEmployeeById(emp.createdBy).subscribe((emp1)=>{
         this.createdBy = emp1.firstName + " " + emp1.lastName;
+        if(this.employee.email==emp1.email){
+          this.showDelete = false;
+          console.log(this.showDelete);
+        }
       });
     });
   }

@@ -10,6 +10,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class PersonalDetailsComponent {
   employee: Employee;
+  // role: String;
   constructor(private employeeService : EmployeeService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {

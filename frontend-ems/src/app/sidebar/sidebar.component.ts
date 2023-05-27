@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit{
   ngOnInit(): void {
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res=>{
       this.role =res.role.slice(5);
-      console.log(this.role);
+      // console.log(this.role);
     });
   }
   personalDetails(){

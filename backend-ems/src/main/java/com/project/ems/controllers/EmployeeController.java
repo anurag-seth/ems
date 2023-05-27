@@ -66,12 +66,12 @@ public class EmployeeController {
         empDetails.setId(0);
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
         if(empDetails.getAddress()!=null) {
-            Address address = addressService.findById(empDetails.getAddress().getId());
-            empDetails.setAddress(address);
+//            addressService.save(empDetails.getAddress());
+            empDetails.setAddress(addressService.findById(empDetails.getAddress().getId()));
         }
         if(empDetails.getContact()!=null){
-            Contact contact = contactService.findById(empDetails.getContact().getId());
-            empDetails.setContact(contact);
+//            contactService.save(empDetails.getContact());
+            empDetails.setContact(contactService.findById(empDetails.getContact().getId()));
         }
         return employeeService.save(empDetails);
     }
