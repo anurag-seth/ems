@@ -46,8 +46,8 @@ public class Address {
     /**
      * one-to-one relationship with employee table.
      */
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "empid",referencedColumnName = "id")
     @JsonBackReference
     private EmpDetails empDetails;
 

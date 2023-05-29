@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { NewEmployee } from '../employee-details/new-employee.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,11 @@ import { map } from 'rxjs/operators';
 export class EmployeeService {
   base_url="http://localhost:8080/employees";
   constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
+  addEmployee(employee: NewEmployee): Observable<NewEmployee> {
+    console.log(employee);
+    
+    return this.http.post<NewEmployee>(`${this.base_url}/add`, employee);
+  }
   getEmployeeByEmail(email: String){
     // let email = sessionStorage.getItem('user');
     return this.http.get<any>(`${this.base_url}/findByEmail/${email}`).pipe(map((res) => {
@@ -48,9 +55,8 @@ export class EmployeeService {
   }
   getAll(){
     return this.http.get<any>(this.base_url + "/findAll").pipe(map((result)=>{
-      console.log(result);
+      // console.log(res);
       return result.map(res=> {
-        // console.log(res)
         return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
           contact:{
             num: res.contact.number,
@@ -68,7 +74,7 @@ export class EmployeeService {
     }));
   }
   deleteEmployee(id: number){
-    this.http.delete<any>(`${this.base_url}/delete/${id}`);
+    this.http.delete<any>(this.base_url + "/delete/${id}");
     return this.router.navigate(['/home-page/employee-list']);
   }
 }

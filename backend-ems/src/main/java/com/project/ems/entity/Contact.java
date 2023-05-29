@@ -59,8 +59,8 @@ public class Contact {
     @Column(name="updated_on")
     private LocalDateTime updatedOn;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "empid",referencedColumnName = "id")
     @JsonBackReference
     private EmpDetails empDetails;
 }

@@ -22,7 +22,6 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((result: Employee[]) => {
       this.employees = result;
-      console.log(result);
     });
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);

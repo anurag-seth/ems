@@ -24,6 +24,6 @@ export class Employee{
             city: String,
             state: String,
             pincode: String
-        }
+          }
     ){}
 }

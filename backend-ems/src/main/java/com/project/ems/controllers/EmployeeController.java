@@ -65,14 +65,16 @@ public class EmployeeController {
     public EmpDetails addEmployee(@RequestBody EmpDetails empDetails){
         empDetails.setId(0);
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
-        if(empDetails.getAddress()!=null) {
-//            addressService.save(empDetails.getAddress());
-            empDetails.setAddress(addressService.findById(empDetails.getAddress().getId()));
-        }
-        if(empDetails.getContact()!=null){
+//        if(empDetails.getAddress().getAddressLine1() == null && empDetails.getContact().getNumber() == null){
+//            if (empDetails.getAddress() != null) {
+//                addressService.save(empDetails.getAddress());
+//                empDetails.setAddress(addressService.findById(empDetails.getAddress().getId()));
+//            }
+//            if (empDetails.getContact() != null) {
 //            contactService.save(empDetails.getContact());
-            empDetails.setContact(contactService.findById(empDetails.getContact().getId()));
-        }
+//                empDetails.setContact(contactService.findById(empDetails.getContact().getId()));
+//            }
+//        }
         return employeeService.save(empDetails);
     }
 
