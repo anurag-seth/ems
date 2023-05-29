@@ -43,7 +43,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   showFullDetails(id: number): void {
-    console.log(id);
+    // console.log(id);
     this.router.navigate(['/home-page/employee-details', id]);
   }
 }

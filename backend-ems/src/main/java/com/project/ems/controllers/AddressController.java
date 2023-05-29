@@ -44,6 +44,7 @@ public class AddressController {
      * @return added address with its id.
      */
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
     public Address addAddress(@RequestBody Address address){
         address.setId(0);
         return addressService.save(address);

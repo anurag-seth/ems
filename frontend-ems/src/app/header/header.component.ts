@@ -9,7 +9,7 @@ import { LoginService } from '../services/login.service';
 })
 export class HeaderComponent {
   constructor(private loginService:LoginService, private router: Router){
-
+    
   }
 
   logout(){

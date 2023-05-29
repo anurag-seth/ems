@@ -62,6 +62,7 @@ public class EmployeeController {
      * @return Details which are added along with respective id
      */
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
     public EmpDetails addEmployee(@RequestBody EmpDetails empDetails){
         empDetails.setId(0);
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));

@@ -9,6 +9,7 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PersonalDetailsComponent } from './employee-details/personal-details/personal-details.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { UpdateEmployeeComponent } from './add-employee/update-employee/update-employee.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -17,9 +18,9 @@ const routes: Routes = [
     {path:'personal-details', component:PersonalDetailsComponent},
     {path:'employee-list', component:EmployeeListComponent},
     {path:'employee-details/:id', component:EmployeeDetailsComponent},
-    {path:'add-employee', component: AddEmployeeComponent}
-  ]},
-  // {path:'personal-details', component:EmployeeDetailsComponent}
+    {path:'add-employee', component: AddEmployeeComponent},
+    {path:'update-employee/:id', component: UpdateEmployeeComponent}
+  ]}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

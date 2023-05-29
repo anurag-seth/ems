@@ -11,7 +11,7 @@
             <h5 class="my-3">{{employee.firstName}} {{employee.lastName}}</h5>
             <p class="text-capitalize text-muted mb-1 bold">{{employee.role}}</p>
             <div class="d-flex justify-content-center mb-2 mt-3">
-              <button type="button" class="btn btn-outline-primary">Update</button>
+              <button type="button" class="btn btn-outline-primary" (click)="updateEmployee(employee.id)">Update</button>
               <button type="button" *ngIf="employee.role!='EMPLOYEE' && showDelete!=false"
                 class="btn btn-outline-danger ms-1" (click)="deleteEmployee()">Delete</button>
             </div>

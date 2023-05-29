@@ -36,6 +36,9 @@ export class EmployeeDetailsComponent implements OnInit{
       });
     });
   }
+  updateEmployee(id: number){
+    this.router.navigate(['/home-page/update-employee', id]);
+  }
   deleteEmployee(){
     this.employeeService.deleteEmployee(this.id);
   }

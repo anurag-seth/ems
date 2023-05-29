@@ -44,6 +44,7 @@ public class ContactController {
      * @return added contact with its id.
      */
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
     Contact addContact(@RequestBody Contact contact){
         contact.setId(0);
         return contactService.save(contact);
