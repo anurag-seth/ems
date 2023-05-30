@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { NewEmployee } from '../employee-details/new-employee.model';
 import { Observable } from 'rxjs';
+import { Employee } from '../employee-details/employee.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,25 @@ export class EmployeeService {
   constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
   addEmployee(employee: NewEmployee): Observable<NewEmployee> {
     console.log(employee);
-    
     return this.http.post<NewEmployee>(`${this.base_url}/add`, employee);
   }
+
+  updateEmployee(newEmployee: Employee): Observable<NewEmployee> {
+    return this.http.put<NewEmployee>(`${this.base_url}/update`, newEmployee);
+  }
+
   getEmployeeByEmail(email: String){
     // let email = sessionStorage.getItem('user');
     return this.http.get<any>(`${this.base_url}/findByEmail/${email}`).pipe(map((res) => {
 			// console.log(res);
       return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
         contact:{
-          num: res.contact.number,
-          type: res.contact.contactType
+          id:res.contact.id,
+          number: res.contact.number,
+          contactType: res.contact.contactType
         },
         address:{
+          id:res.address.id,
           addressLine1: res.address.addressLine1,
           addressLine2: res.address.addressLine2,
           city: res.address.city,
@@ -40,10 +47,12 @@ export class EmployeeService {
 			// console.log(res);
       return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
         contact:{
-          num: res.contact.number,
-          type: res.contact.contactType
+          id:res.contact.id,
+          number: res.contact.number,
+          contactType: res.contact.contactType
         },
         address:{
+          id:res.address.id,
           addressLine1: res.address.addressLine1,
           addressLine2: res.address.addressLine2,
           city: res.address.city,
@@ -59,10 +68,12 @@ export class EmployeeService {
       return result.map(res=> {
         return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
           contact:{
-            num: res.contact.number,
-            type: res.contact.contactType
+            id:res.contact.id,
+            number: res.contact.number,
+            contactType: res.contact.contactType
           },
           address:{
+            id:res.address.id,
             addressLine1: res.address.addressLine1,
             addressLine2: res.address.addressLine2,
             city: res.address.city,
@@ -72,9 +83,5 @@ export class EmployeeService {
         };
       });
     }));
-  }
-  deleteEmployee(id: number){
-    this.http.delete<any>(this.base_url + "/delete/${id}");
-    return this.router.navigate(['/home-page/employee-list']);
   }
 }

@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col mb-3" *ngFor="let employee of filteredEmployees;">
-      <div class="card">
+      <div class="card" *ngIf="role!='EMPLOYEE' || employee.active==true">
         <div class="card-body">
           <div class="row">
             <div class="col-lg-2">
@@ -25,7 +25,8 @@
             </div>
             <div class="col-lg-4">
               <p class="mb-1">Email: {{employee.email}}</p>
-              <p class="mb-1">Contact: {{employee.contact.num}}</p>
+              <p class="mb-1">Contact: {{employee.contact.number}}</p>
+              <p class="mb-2">Active status: {{employee.active}}</p>
               <button class="btn btn-outline-primary" (click)="showFullDetails(employee.id)"
                 *ngIf="role!='EMPLOYEE'">Full Details</button>
             </div>

@@ -15,10 +15,12 @@ export class Employee{
         public createdOn: String,
         public updatedOn: String,
         public contact:{
-            num: number,
-            type: String
+            id:number,
+            number: number,
+            contactType: String
         },
         public address:{
+            id:number,
             addressLine1: String,
             addressLine2: String,
             city: String,

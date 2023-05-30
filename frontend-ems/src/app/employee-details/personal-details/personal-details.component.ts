@@ -21,4 +21,7 @@ export class PersonalDetailsComponent {
     });
     // this.employeeService.getAll().subscribe();
   }
+  updateEmployee(id: number){
+    this.router.navigate(['/home-page/update-employee', id]);
+  }
 }

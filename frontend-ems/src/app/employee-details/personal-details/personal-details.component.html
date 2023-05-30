@@ -11,7 +11,7 @@
               <h5 class="my-3">{{employee.firstName}} {{employee.lastName}}</h5>
               <p class="text-capitalize text-muted mb-1 bold">{{employee.role}}</p>
               <div class="d-flex justify-content-center mb-2 mt-3">
-                <button type="button" class="btn btn-outline-primary">Update</button>
+                <button type="button" class="btn btn-outline-primary update" (click)="updateEmployee(employee.id)">Update</button>
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{employee.contact.num}}</p>
+                  <p class="text-muted mb-0">{{employee.contact.number}}</p>
                 </div>
               </div>
               <hr>

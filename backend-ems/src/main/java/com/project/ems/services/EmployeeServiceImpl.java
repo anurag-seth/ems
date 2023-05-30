@@ -53,7 +53,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmpDetails save(EmpDetails empDetails) {
         String role = "ROLE_" +  empDetails.getRole();
         empDetails.setRole(role);
-        empDetails.setPassword(webSecurityConfig.passwordEncoder().encode(empDetails.getPassword()));
+        if(empDetails.getPassword()!=null){
+            empDetails.setPassword(webSecurityConfig.passwordEncoder().encode(empDetails.getPassword()));
+        }
+        else{
+            empDetails.setPassword(employeeRepository.findByEmail(empDetails.getEmail()).get().getPassword());
+        }
         return employeeRepository.save(empDetails);
     }
 

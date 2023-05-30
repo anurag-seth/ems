@@ -90,16 +90,16 @@ public class EmployeeController {
 //            throw new RuntimeException("Email and Employee id can't be updated");
 //        }
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
-        if(empDetails.getAddress()!=null) {
-            Address address = new Address();
-            address = addressService.findById(empDetails.getAddress().getId());
-            empDetails.setAddress(address);
-        }
-        if(empDetails.getContact()!=null){
-            Contact contact = new Contact();
-            contact = contactService.findById(empDetails.getContact().getId());
-            empDetails.setContact(contact);
-        }
+//        if(empDetails.getAddress()!=null) {
+//            Address address = new Address();
+//            address = addressService.findById(empDetails.getAddress().getId());
+//            empDetails.setAddress(address);
+//        }
+//        if(empDetails.getContact()!=null){
+//            Contact contact = new Contact();
+//            contact = contactService.findById(empDetails.getContact().getId());
+//            empDetails.setContact(contact);
+//        }
         return employeeService.save(empDetails);
     }
 

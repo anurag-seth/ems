@@ -40,6 +40,10 @@ export class EmployeeDetailsComponent implements OnInit{
     this.router.navigate(['/home-page/update-employee', id]);
   }
   deleteEmployee(){
-    this.employeeService.deleteEmployee(this.id);
+   this.employee.active=false;
+      this.employeeService.updateEmployee(this.employee).subscribe(res=>{
+        console.log(res);
+        this.router.navigate(['/home-page/employee-list']);
+      })
   }
 }
