@@ -12,6 +12,8 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[];
   role: string;
   search: string = '';
+  currentPage: number = 1;
+  pageSize: number = 5;
 
   constructor(
     private employeeService: EmployeeService,
@@ -30,20 +32,26 @@ export class EmployeeListComponent implements OnInit {
 
   get filteredEmployees(): Employee[] {
     if (!this.search) {
-      return this.employees;
+      return this.sortEmployees(this.employees);
     } else {
       const query = this.search.toLowerCase();
-      return this.employees.filter(employee =>
+      const filtered = this.employees.filter(employee =>
         employee.firstName.toLowerCase().includes(query) ||
         employee.lastName.toLowerCase().includes(query) ||
         employee.role.toLowerCase().includes(query) ||
         employee.email.toLowerCase().includes(query)
       );
+      return this.sortEmployees(filtered);
     }
   }
 
+  private sortEmployees(employees: Employee[]): Employee[] {
+    const activeEmployees = employees.filter(employee => employee.active);
+    const nonActiveEmployees = employees.filter(employee => !employee.active);
+    return [...activeEmployees, ...nonActiveEmployees];
+  }
+
   showFullDetails(id: number): void {
-    // console.log(id);
     this.router.navigate(['/home-page/employee-details', id]);
   }
 }

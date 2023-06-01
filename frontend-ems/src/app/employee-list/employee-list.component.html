@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col mb-3" *ngFor="let employee of filteredEmployees;">
-      <div class="card" *ngIf="role!='EMPLOYEE' || employee.active==true">
+      <div class="card" *ngIf="role!='EMPLOYEE' || employee.active==true" [ngStyle]="{backgroundColor: employee.active==true?'#D5f5E3':'#FADBD8'}">
         <div class="card-body">
           <div class="row">
             <div class="col-lg-2">
@@ -18,7 +18,7 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp" alt="avatar"
                 *ngIf="employee.gender=='Female'" class="rounded-circle img-fluid" style="width: 70px;">
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-4">
               <p class="mb-1">Name: {{employee.firstName}} {{employee.lastName}}</p>
               <p class="mb-1">Employee Id: {{employee.empId}}</p>
               <p class="mb-1">Role: {{employee.role.slice(5)}}</p>
@@ -26,7 +26,8 @@
             <div class="col-lg-4">
               <p class="mb-1">Email: {{employee.email}}</p>
               <p class="mb-1">Contact: {{employee.contact.number}}</p>
-              <p class="mb-2">Active status: {{employee.active}}</p>
+            </div>
+            <div class="col-lg-2" style="padding: 20px;">
               <button class="btn btn-outline-primary" (click)="showFullDetails(employee.id)"
                 *ngIf="role!='EMPLOYEE'">Full Details</button>
             </div>

@@ -65,6 +65,8 @@ public class EmployeeController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
     public EmpDetails addEmployee(@RequestBody EmpDetails empDetails){
         empDetails.setId(0);
+        int id = employeeService.findAll().size() + 1;
+        empDetails.setEmpId(id);
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
 //        if(empDetails.getAddress().getAddressLine1() == null && empDetails.getContact().getNumber() == null){
 //            if (empDetails.getAddress() != null) {
