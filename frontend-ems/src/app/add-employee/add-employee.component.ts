@@ -20,7 +20,7 @@ export class AddEmployeeComponent implements OnInit{
     lastName: '',
     email: '',
     password: '',
-    role: '',
+    role: 'employee',
     address: {
       addressLine1: '',
       addressLine2: '',
