@@ -17,6 +17,10 @@ export class EmployeeService {
     return this.http.post<NewEmployee>(`${this.base_url}/add`, employee);
   }
 
+  viewImage(email: String){
+    return this.http.get(`${this.base_url}/viewImage/${email}`,{ responseType: 'blob' });
+  }
+
   updateEmployee(newEmployee: Employee): Observable<NewEmployee> {
     return this.http.put<NewEmployee>(`${this.base_url}/update`, newEmployee);
   }

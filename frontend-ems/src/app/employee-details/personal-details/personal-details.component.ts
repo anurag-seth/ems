@@ -10,6 +10,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class PersonalDetailsComponent {
   employee: Employee;
+  profilePic: any;
   // role: String;
   constructor(private employeeService : EmployeeService, private router: Router, private activatedRoute: ActivatedRoute){}
 
@@ -18,6 +19,13 @@ export class PersonalDetailsComponent {
     this.employeeService.getEmployeeByEmail(email).subscribe((emp)=>{
       this.employee = emp;
       this.employee.role = emp.role.slice(5);
+    });
+    this.employeeService.viewImage(email).subscribe((imageData: Blob) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.profilePic = reader.result;
+      };
+      reader.readAsDataURL(imageData);
     });
     // this.employeeService.getAll().subscribe();
   }

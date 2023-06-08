@@ -8,10 +8,15 @@ import com.project.ems.services.AddressService;
 import com.project.ems.services.ContactService;
 import com.project.ems.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -38,9 +43,19 @@ public class EmployeeController {
     @GetMapping("/findAll")
 //    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasRole('SUPER-ADMIN')")
     public List<EmpDetails> findAll(){
-//        System.out.println("in admin");
-//        System.out.println(employeeService.findAll());
         return employeeService.findAll();
+    }
+
+    @ResponseStatus(value= HttpStatus.OK)
+    @PostMapping("/updateImage")
+    public void updateImage(@RequestParam("profilePic") MultipartFile file, @RequestParam("email") String email) throws IOException{
+        employeeService.updateImage(file, email);
+    }
+
+    @GetMapping("/viewImage/{email}")
+    public ResponseEntity<byte[]> viewImage(@PathVariable String email) {
+        byte[] image = employeeService.viewImage(email);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
     }
 
     /**
@@ -68,16 +83,6 @@ public class EmployeeController {
         int id = employeeService.findAll().size() + 2;
         empDetails.setEmpId(id);
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
-//        if(empDetails.getAddress().getAddressLine1() == null && empDetails.getContact().getNumber() == null){
-//            if (empDetails.getAddress() != null) {
-//                addressService.save(empDetails.getAddress());
-//                empDetails.setAddress(addressService.findById(empDetails.getAddress().getId()));
-//            }
-//            if (empDetails.getContact() != null) {
-//            contactService.save(empDetails.getContact());
-//                empDetails.setContact(contactService.findById(empDetails.getContact().getId()));
-//            }
-//        }
         return employeeService.save(empDetails);
     }
 
@@ -87,21 +92,7 @@ public class EmployeeController {
      */
     @PutMapping("/update")
     public EmpDetails updateEmployee(@RequestBody EmpDetails empDetails){
-//        EmpDetails emp = employeeService.findById(empDetails.getId());
-//        if(emp.getEmpId()!=empDetails.getEmpId() || emp.getEmail()!=empDetails.getEmail()){
-//            throw new RuntimeException("Email and Employee id can't be updated");
-//        }
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
-//        if(empDetails.getAddress()!=null) {
-//            Address address = new Address();
-//            address = addressService.findById(empDetails.getAddress().getId());
-//            empDetails.setAddress(address);
-//        }
-//        if(empDetails.getContact()!=null){
-//            Contact contact = new Contact();
-//            contact = contactService.findById(empDetails.getContact().getId());
-//            empDetails.setContact(contact);
-//        }
         return employeeService.save(empDetails);
     }
 
@@ -111,7 +102,7 @@ public class EmployeeController {
      */
     @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable int id){
-//        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//        We can delete the employee or change its active status to false so that its details are visible to only admin but he/she can't login.
 //        employeeService.deleteById(id);
 //        EmpDetails emp = employeeService.findById(id);
 //        emp.setActive(false);

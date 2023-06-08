@@ -14,6 +14,8 @@ export class EmployeeDetailsComponent implements OnInit{
   id: number;
   active: String;
   showDelete: boolean;
+  profilePic: any;
+  employeeEmail: String
   constructor(private employeeService : EmployeeService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -25,6 +27,16 @@ export class EmployeeDetailsComponent implements OnInit{
     this.employeeService.getEmployeeById(this.id).subscribe((emp)=>{
       this.employee = emp;
       this.active = emp.active==true?'Active':'Not Active';
+      this.employeeEmail = emp.email;
+      this.employeeService.viewImage(this.employeeEmail).subscribe((imageData: Blob) => {
+        console.log(this.employeeEmail);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          this.profilePic = reader.result;
+        };
+        reader.readAsDataURL(imageData);
+      });
+      // console.log(this.employeeEmail);
       // this.createdById = emp.createdBy;
       // console.log(this.createdById);
       this.employeeService.getEmployeeById(emp.createdBy).subscribe((emp1)=>{

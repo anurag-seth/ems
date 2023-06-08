@@ -1,12 +1,15 @@
 package com.project.ems.services;
 
+import com.project.ems.dto.ImageUtil;
 import com.project.ems.entity.EmpDetails;
 import com.project.ems.repositories.EmployeeRepository;
 import com.project.ems.security.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,5 +68,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteById(int id) {
         employeeRepository.deleteById((id));
+    }
+
+    @Override
+    public EmpDetails updateImage(MultipartFile file, String email) throws IOException {
+        Optional<EmpDetails> empDetails = employeeRepository.findByEmail(email);
+        empDetails.get().setImage(ImageUtil.compressImage(file.getBytes()));
+        return employeeRepository.save(empDetails.get());
+    }
+
+    @Override
+    public byte[] viewImage(String email) {
+        Optional<EmpDetails> empDetails = employeeRepository.findByEmail(email);
+        return ImageUtil.decompressImage(empDetails.get().getImage());
     }
 }

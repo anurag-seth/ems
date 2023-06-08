@@ -84,6 +84,10 @@ public class EmpDetails {
     @Column(name="dob", nullable = false)
     private String dob;
 
+    @Lob
+    @Column(name="image", columnDefinition = "LONGBLOB")
+    private byte[] image;
+
     /**
      * store time and date at which the employee is created.
      */
