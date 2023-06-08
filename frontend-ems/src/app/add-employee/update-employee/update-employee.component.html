@@ -8,7 +8,7 @@
                         <div class="form-group row">
                             <label class="col-4">Employee Id</label>
                             <div class="col-8">
-                                <p class="text-muted mb-0">{{employee.empId}}</p>      
+                                <p class="text-muted mb-0">{{employee.empId}}</p>
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="form-group row">
                             <label class="col-4">Employee Type</label>
                             <div class="col-8">
-                                <p class="text-muted mb-0">{{employee.role.slice(5)}}</p>      
+                                <p class="text-muted mb-0">{{employee.role}}</p>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="form-group row">
                             <label class="col-4">Email</label>
                             <div class="col-8">
-                                <p class="text-muted mb-0">{{employee.email}}</p>      
+                                <p class="text-muted mb-0">{{employee.email}}</p>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <label class="col-4">Created By</label>
                             <div class="col-8">
-                                <p class="text-muted mb-0">{{createdBy}}</p>      
+                                <p class="text-muted mb-0">{{createdBy}}</p>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="form-group row">
                             <label class="col-4">Created On</label>
                             <div class="col-8">
-                                <p class="text-muted mb-0">{{employee.createdOn.slice(0,10)}}</p>      
+                                <p class="text-muted mb-0">{{employee.createdOn.slice(0,10)}}</p>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label class="col-4">Updated On</label>
                             <div class="col-8">
-                                <p class="text-muted mb-0">{{employee.updatedOn}}</p>      
+                                <p class="text-muted mb-0">{{employee.updatedOn}}</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="firstName">First Name</label>
                                 <div class="col-8">
-                                    <input type="text" id="firstName" class="form-control" [(ngModel)]="newEmployee.firstName" name="firstName" required>
+                                    <input type="text" id="firstName" class="form-control"
+                                        [(ngModel)]="newEmployee.firstName" name="firstName" required>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +76,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="lastName">Last Name</label>
                                 <div class="col-8">
-                                    <input type="text" id="lastName" class="form-control" [(ngModel)]="newEmployee.lastName" name="lastName"required>
+                                    <input type="text" id="lastName" class="form-control"
+                                        [(ngModel)]="newEmployee.lastName" name="lastName" required>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +87,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="dob">Date of Birth</label>
                                 <div class="col-8">
-                                    <input type="text" id="dob" class="form-control" [(ngModel)]="newEmployee.dob" name="dob" required>
+                                    <input type="text" id="dob" class="form-control" [(ngModel)]="newEmployee.dob"
+                                        name="dob" required>
                                 </div>
                             </div>
                         </div>
@@ -105,13 +108,15 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label" for="addressLine1">Address Line 1</label>
                         <div class="col-sm-6">
-                            <input type="text" id="addressLine1" class="form-control" [(ngModel)]="newEmployee.address.addressLine1" name="addressLine1" required>
+                            <input type="text" id="addressLine1" class="form-control"
+                                [(ngModel)]="newEmployee.address.addressLine1" name="addressLine1" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label" for="addressLine2">Address Line 2</label>
                         <div class="col-sm-6">
-                            <input type="text" id="addressLine2" class="form-control" [(ngModel)]="newEmployee.address.addressLine2" name="addressLine2" required>
+                            <input type="text" id="addressLine2" class="form-control"
+                                [(ngModel)]="newEmployee.address.addressLine2" name="addressLine2" required>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -119,7 +124,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="city">City</label>
                                 <div class="col-8">
-                                    <input type="text" id="city" class="form-control" [(ngModel)]="newEmployee.address.city" name="city" required>
+                                    <input type="text" id="city" class="form-control"
+                                        [(ngModel)]="newEmployee.address.city" name="city" required>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +133,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="state">State:</label>
                                 <div class="col-8">
-                                    <input type="text" id="state" class="form-control" [(ngModel)]="newEmployee.address.state" name="state" required>
+                                    <input type="text" id="state" class="form-control"
+                                        [(ngModel)]="newEmployee.address.state" name="state" required>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +142,8 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label" for="pincode">Pincode:</label>
                         <div class="col-sm-4">
-                            <input type="text" id="pincode" class="form-control" [(ngModel)]="newEmployee.address.pincode" name="pincode" required>
+                            <input type="text" id="pincode" class="form-control"
+                                [(ngModel)]="newEmployee.address.pincode" name="pincode" required>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -143,7 +151,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="role">Contact Type</label>
                                 <div class="col-8">
-                                    <select id="contactType" class="form-select" [(ngModel)]="newEmployee.contact.contactType" name="contactType">
+                                    <select id="contactType" class="form-select"
+                                        [(ngModel)]="newEmployee.contact.contactType" name="contactType">
                                         <option value="Personal">Personal</option>
                                         <option value="Primary">For work</option>
                                     </select>
@@ -154,7 +163,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="contactNumber">Contact Number</label>
                                 <div class="col-8">
-                                    <input type="text" id="contactNumber" class="form-control" [(ngModel)]="newEmployee.contact.number" name="contactNumber" required>
+                                    <input type="text" id="contactNumber" class="form-control"
+                                        [(ngModel)]="newEmployee.contact.number" name="contactNumber" required>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +174,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="bloodGroup">Blood Group</label>
                                 <div class="col-8">
-                                    <input type="text" id="bloodGroup" class="form-control" [(ngModel)]="newEmployee.bloodGroup" name="bloodGroup" required>
+                                    <input type="text" id="bloodGroup" class="form-control"
+                                        [(ngModel)]="newEmployee.bloodGroup" name="bloodGroup" required>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +183,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="gender">Gender</label>
                                 <div class="col-8">
-                                    <select id="gender" class="form-select" [(ngModel)]="newEmployee.gender" name="gender">
+                                    <select id="gender" class="form-select" [(ngModel)]="newEmployee.gender"
+                                        name="gender">
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
@@ -185,7 +197,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="martialStatus">Marital Status</label>
                                 <div class="col-8">
-                                    <select id="martialStatus" class="form-select" [(ngModel)]="newEmployee.martialStatus" name="martialStatus">
+                                    <select id="martialStatus" class="form-select"
+                                        [(ngModel)]="newEmployee.martialStatus" name="martialStatus">
                                         <option value="Single">Single</option>
                                         <option value="Married">Married</option>
                                     </select>
@@ -196,7 +209,8 @@
                             <div class="form-group row">
                                 <label class="col-4" for="active">Active status</label>
                                 <div class="col-8">
-                                    <select id="active" class="form-select" [(ngModel)]="newEmployee.active" name="active">
+                                    <select id="active" class="form-select" [(ngModel)]="newEmployee.active"
+                                        name="active">
                                         <option value=true>Active</option>
                                         <option value=false>Not-active</option>
                                     </select>

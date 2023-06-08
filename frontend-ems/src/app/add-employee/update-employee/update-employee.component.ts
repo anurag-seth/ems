@@ -27,13 +27,14 @@ export class UpdateEmployeeComponent implements OnInit{
       this.employee = emp1;
       this.newEmployee = emp1;
       this.newEmployee.role = emp1.role.slice(5);
-      this.employee.role = emp1.role.slice(5);
-      this.role = emp1.role.slice(5);
+      this.employee.role = emp1.role;
+      this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
+        this.role = res.role.slice(5);
+      });
       this.employeeService.getEmployeeById(emp1.createdBy).subscribe((emp2)=>{
         this.createdBy = emp2.firstName + " " + emp2.lastName;
       });
     });
-    // console.log(this.id);
   }
 
   onSubmit(): void {
@@ -42,9 +43,7 @@ export class UpdateEmployeeComponent implements OnInit{
     this.employeeService.updateEmployee(this.newEmployee).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/home-page/employee-details',this.newEmployee.id]);
-      // Handle success or redirect to employee list
     }, error => {
-      // Handle error
       console.log("Either empid or email exists");
     });
   }
