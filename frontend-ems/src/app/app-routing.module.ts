@@ -10,11 +10,13 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PersonalDetailsComponent } from './employee-details/personal-details/personal-details.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './add-employee/update-employee/update-employee.component';
+import { MainPageComponent } from './home-page/main-page/main-page.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'login',component: LoginComponent, canActivate:[LoginguardService]},
   {path:'home-page', component:HomePageComponent,canActivate:[AuthguardService], children:[
+    {path:'', component: MainPageComponent},
     {path:'personal-details', component:PersonalDetailsComponent},
     {path:'employee-list', component:EmployeeListComponent},
     {path:'employee-details/:id', component:EmployeeDetailsComponent},
