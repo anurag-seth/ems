@@ -49,7 +49,6 @@ export class PersonalDetailsComponent {
 
   onChange(event: any) {
     this.file = event.target.files[0];
-    console.log(this.file);
     const reader = new FileReader();
     reader.onload = (res: any) => {
       this.profilePic = res.target.result;
@@ -76,7 +75,6 @@ export class PersonalDetailsComponent {
       formData.append('profilePic', this.file);
       this.employeeService.updateImage(formData).subscribe((res: any) => {
         this.profilePic = res;
-        console.log(res);
       });
     }
     this.showAlert = false;

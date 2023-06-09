@@ -13,7 +13,6 @@ export class EmployeeService {
   base_url="http://localhost:8080/employees";
   constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
   addEmployee(employee: NewEmployee): Observable<NewEmployee> {
-    console.log(employee);
     return this.http.post<NewEmployee>(`${this.base_url}/add`, employee);
   }
 
@@ -31,9 +30,7 @@ export class EmployeeService {
   }
 
   getEmployeeByEmail(email: String){
-    // let email = sessionStorage.getItem('user');
     return this.http.get<any>(`${this.base_url}/findByEmail/${email}`).pipe(map((res) => {
-			// console.log(res);
       return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
         contact:{
           id:res.contact.id,
@@ -53,7 +50,6 @@ export class EmployeeService {
   }
   getEmployeeById(id: number){
     return this.http.get<any>(`${this.base_url}/find/${id}`).pipe(map((res) => {
-			// console.log(res);
       return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
         contact:{
           id:res.contact.id,
@@ -73,7 +69,6 @@ export class EmployeeService {
   }
   getAll(){
     return this.http.get<any>(this.base_url + "/findAll").pipe(map((result)=>{
-      // console.log(res);
       return result.map(res=> {
         return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,
           contact:{

@@ -16,12 +16,10 @@ export class SidebarComponent implements OnInit{
   ngOnInit(): void {
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res=>{
       this.role =res.role.slice(5);
-      // console.log(this.role);
     });
   }
   personalDetails(){
     let email = sessionStorage.getItem('user');
-    // this.router.navigate(['/home-page/personal-details'], email);
   }
 }
 

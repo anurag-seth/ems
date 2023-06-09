@@ -39,7 +39,6 @@ export class EmployeeDetailsComponent implements OnInit{
         this.createdBy = emp1.firstName + " " + emp1.lastName;
         if(this.employee.email==emp1.email){
           this.showDelete = false;
-          console.log(this.showDelete);
         }
       });
       if(this.employeeEmail==email){
@@ -53,7 +52,6 @@ export class EmployeeDetailsComponent implements OnInit{
   deleteEmployee(){
    this.employee.active=false;
       this.employeeService.updateEmployee(this.employee).subscribe(res=>{
-        console.log(res);
         this.router.navigate(['/home-page/employee-list']);
       })
   }

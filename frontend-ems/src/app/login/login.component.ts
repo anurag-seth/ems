@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // this.isLogIn = this.loginService.isUserLogIn();
     const rememberedEmail = localStorage.getItem('rememberedEmail');
     const rememberedPassword = localStorage.getItem('rememberedPassword');
     if (rememberedEmail && rememberedPassword) {
@@ -39,7 +38,6 @@ export class LoginComponent implements OnInit{
   }
   
   onSubmit() {
-    // console.log(this.login.value);
     const email = this.login.value.email;
     const password = this.login.value.password;
     if (this.rememberMe) {
@@ -50,7 +48,6 @@ export class LoginComponent implements OnInit{
       localStorage.removeItem('rememberedPassword');
     }
     this.loginService.login(this.login.value).subscribe((res) => {
-      // console.log(res);
       this.router.navigate(['/home-page']),() => {
 				this.error = 'Either invalid credentials or something went wrong';
 			}

@@ -11,8 +11,6 @@ export class LoginguardService {
   canActivate(): boolean{
     const sessionId = sessionStorage.getItem('sessionId');
     if (sessionId) {
-      // User is not authenticated, redirect to the login page
-      
       this.router.navigate(['/home-page']);
       return false;
     }

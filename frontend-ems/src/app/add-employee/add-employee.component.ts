@@ -48,19 +48,22 @@ export class AddEmployeeComponent implements OnInit{
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);
       this.createdBy = res.id;
-      console.log(this.role);
     });
   }
 
+  showButton(): boolean{
+    if(this.newEmployee.firstName==''||this.newEmployee.lastName==''||this.newEmployee.email==''||this.newEmployee.password==''||this.newEmployee.bloodGroup==''||this.newEmployee.gender==''||this.newEmployee.dob==''||this.newEmployee.address.addressLine1==''||this.newEmployee.address.addressLine2==''||this.newEmployee.address.city==''||this.newEmployee.address.pincode==''||this.newEmployee.address.state==''||this.newEmployee.contact.number==''){
+      return false;
+    }
+    return true;
+  }
   onSubmit(): void {
     this.newEmployee.createdBy = this.createdBy;
     console.log(this.newEmployee);
     this.employeeService.addEmployee(this.newEmployee).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/home-page/employee-list']);
-      // Handle success or redirect to employee list
     }, error => {
-      // Handle error
       console.log("Either empid or email exists");
     });
   }

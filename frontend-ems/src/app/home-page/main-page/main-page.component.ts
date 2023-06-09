@@ -9,8 +9,8 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class MainPageComponent implements OnInit{
   name: String;
 
-  constructor(private employeeService: EmployeeService){
-  }
+  constructor(private employeeService: EmployeeService){}
+  
   ngOnInit(): void {
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res=>{
       this.name = res.firstName + " " + res.lastName;

@@ -16,7 +16,6 @@ export class LoginService {
 
   login(payLoad:{email:string, password:string}): Observable<any>{
     return this.http.post<any>(this.base_url + "/ems/login",payLoad).pipe(map((res)=>{
-      // console.log(res.sessionId);
       sessionStorage.setItem('user', payLoad.email);
       sessionStorage.setItem('sessionId', res.sessionId);
       this.isAuthen = true;

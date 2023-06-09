@@ -12,7 +12,6 @@ export class AuthguardService{
     const isAuthenticated = sessionStorage.getItem("sessionId");
     
     if (!isAuthenticated) {
-      console.log();
       // User is not authenticated, redirect to the login page
       this.router.navigate(['/login']);
       return false;

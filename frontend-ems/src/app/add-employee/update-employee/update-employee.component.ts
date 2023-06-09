@@ -32,7 +32,6 @@ export class UpdateEmployeeComponent implements OnInit{
       this.employee.role = emp1.role;
       this.employeeEmail = emp1.email;
       this.employeeService.viewImage(this.employeeEmail).subscribe((imageData: Blob) => {
-        console.log(this.employeeEmail);
         const reader = new FileReader();
         reader.onloadend = () => {
           this.profilePic = reader.result;
@@ -49,8 +48,6 @@ export class UpdateEmployeeComponent implements OnInit{
   }
 
   onSubmit(): void {
-    
-    console.log(this.newEmployee);
     this.employeeService.updateEmployee(this.newEmployee).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/home-page/employee-details',this.newEmployee.id]);
