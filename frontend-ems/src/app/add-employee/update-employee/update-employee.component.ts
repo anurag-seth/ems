@@ -15,6 +15,8 @@ export class UpdateEmployeeComponent implements OnInit{
   id: number;
   createdBy:String;
   newEmployee: Employee;
+  profilePic: any;
+  employeeEmail: String
   constructor(private employeeService : EmployeeService, 
               private router: Router, 
               private activatedRoute: ActivatedRoute){}
@@ -28,6 +30,15 @@ export class UpdateEmployeeComponent implements OnInit{
       this.newEmployee = emp1;
       this.newEmployee.role = emp1.role.slice(5);
       this.employee.role = emp1.role;
+      this.employeeEmail = emp1.email;
+      this.employeeService.viewImage(this.employeeEmail).subscribe((imageData: Blob) => {
+        console.log(this.employeeEmail);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          this.profilePic = reader.result;
+        };
+        reader.readAsDataURL(imageData);
+      });
       this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
         this.role = res.role.slice(5);
       });

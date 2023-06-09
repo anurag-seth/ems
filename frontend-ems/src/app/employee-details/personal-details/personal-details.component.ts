@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-personal-details',
@@ -11,25 +12,65 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class PersonalDetailsComponent {
   employee: Employee;
   profilePic: any;
-  // role: String;
-  constructor(private employeeService : EmployeeService, private router: Router, private activatedRoute: ActivatedRoute){}
+  showAlert: boolean = false;
+  file: File | undefined;
+  @ViewChild('fileInput') fileInput: ElementRef;
+
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     let email = sessionStorage.getItem('user');
-    this.employeeService.getEmployeeByEmail(email).subscribe((emp)=>{
+    
+    this.employeeService.getEmployeeByEmail(email).subscribe((emp) => {
       this.employee = emp;
       this.employee.role = emp.role.slice(5);
     });
+
     this.employeeService.viewImage(email).subscribe((imageData: Blob) => {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        this.profilePic = reader.result;
+      reader.onload = (res: any) => {
+        this.profilePic = res.target.result;
       };
       reader.readAsDataURL(imageData);
     });
-    // this.employeeService.getAll().subscribe();
   }
-  updateEmployee(id: number){
+
+  updateEmployee(id: number) {
     this.router.navigate(['/home-page/update-employee', id]);
+  }
+
+  onChange(event: any) {
+    this.file = event.target.files[0];
+    console.log(this.file);
+    const reader = new FileReader();
+    reader.onload = (res: any) => {
+      this.profilePic = res.target.result;
+    };
+    reader.readAsDataURL(this.file);
+  }
+
+  updateImage() {
+    this.showAlert = true;
+  }
+
+  closeAlert() {
+    this.showAlert = false;
+  }
+
+  onUpload() {
+    if (this.file) {
+      const formData = new FormData();
+      formData.append('profilePic', this.file);
+      this.employeeService.updateImage(formData).subscribe((res: any) => {
+        this.profilePic = res;
+        console.log(res);
+      });
+    }
+    this.showAlert = false;
   }
 }

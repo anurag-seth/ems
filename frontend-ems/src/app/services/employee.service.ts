@@ -21,6 +21,11 @@ export class EmployeeService {
     return this.http.get(`${this.base_url}/viewImage/${email}`,{ responseType: 'blob' });
   }
 
+  updateImage(formData: FormData):Observable<any>{
+    let email = sessionStorage.getItem('user');
+    return this.http.post<any>(`${this.base_url}/updateImage/${email}`, formData);
+  }
+
   updateEmployee(newEmployee: Employee): Observable<NewEmployee> {
     return this.http.put<NewEmployee>(`${this.base_url}/update`, newEmployee);
   }

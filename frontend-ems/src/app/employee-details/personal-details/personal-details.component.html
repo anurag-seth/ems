@@ -4,13 +4,21 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img [src]="profilePic" alt="Image" class="rounded-circle img-fluid" style="height:140px; width: 140px;">
+              <img id="profileImage" [src]="profilePic" alt="Image" class="rounded-circle img-fluid" style="height:140px; width: 140px;">
               <h5 class="my-3">{{employee.firstName}} {{employee.lastName}}</h5>
               <p class="text-capitalize text-muted mb-1 bold">{{employee.role}}</p>
               <div class="d-flex justify-content-center mb-2 mt-3">
-                <button type="button" class="btn btn-outline-primary update" (click)="updateEmployee(employee.id)">Update</button>
+                <button type="button" class="btn btn-outline-warning" (click)="updateImage()">Update Image</button>
+                <button type="button" class="btn btn-outline-primary update" (click)="updateEmployee(employee.id)" style="margin-left: 10px;" >Update</button>
               </div>
             </div>
+          </div>
+          <div class="alert alert-warning alert-dismissible fade show" *ngIf="showAlert" role="alert">
+            <button type="button" class="close" style="float: right; margin-bottom: 10px;" (click)="closeAlert()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <input class="form-control" type="file" (change)="onChange($event)">
+            <button (click)="onUpload()" class="btn btn-success">Upload</button>
           </div>
         </div>
         <div class="col-lg-8">

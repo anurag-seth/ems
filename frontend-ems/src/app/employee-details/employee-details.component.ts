@@ -22,7 +22,6 @@ export class EmployeeDetailsComponent implements OnInit{
     this.activatedRoute.params.subscribe((param)=>{
       this.id=+param['id'];
     });
-    // console.log(this.id);
     let email = sessionStorage.getItem('user');
     this.employeeService.getEmployeeById(this.id).subscribe((emp)=>{
       this.employee = emp;
@@ -36,9 +35,6 @@ export class EmployeeDetailsComponent implements OnInit{
         };
         reader.readAsDataURL(imageData);
       });
-      // console.log(this.employeeEmail);
-      // this.createdById = emp.createdBy;
-      // console.log(this.createdById);
       this.employeeService.getEmployeeById(emp.createdBy).subscribe((emp1)=>{
         this.createdBy = emp1.firstName + " " + emp1.lastName;
         if(this.employee.email==emp1.email){
@@ -46,6 +42,9 @@ export class EmployeeDetailsComponent implements OnInit{
           console.log(this.showDelete);
         }
       });
+      if(this.employeeEmail==email){
+        this.showDelete = false;
+      }
     });
   }
   updateEmployee(id: number){

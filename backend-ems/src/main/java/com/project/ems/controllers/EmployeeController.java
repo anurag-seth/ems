@@ -1,5 +1,6 @@
 package com.project.ems.controllers;
 
+import com.project.ems.dto.ImageUtil;
 import com.project.ems.entity.Address;
 import com.project.ems.entity.Contact;
 import com.project.ems.entity.EmpDetails;
@@ -47,9 +48,11 @@ public class EmployeeController {
     }
 
     @ResponseStatus(value= HttpStatus.OK)
-    @PostMapping("/updateImage")
-    public void updateImage(@RequestParam("profilePic") MultipartFile file, @RequestParam("email") String email) throws IOException{
+    @PostMapping("/updateImage/{email}")
+    public ResponseEntity<byte[]> updateImage(@RequestParam("profilePic") MultipartFile file, @PathVariable String email) throws IOException{
         employeeService.updateImage(file, email);
+        byte[] image = employeeService.viewImage(email);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
     }
 
     @GetMapping("/viewImage/{email}")
