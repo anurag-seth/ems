@@ -86,6 +86,10 @@ public class EmployeeController {
         int id = employeeService.findAll().size() + 2;
         empDetails.setEmpId(id);
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
+        //form-validation of add employees
+        if(empDetails.getLastName()==null||empDetails.getPassword()==null||empDetails.getRole()==null||empDetails.getEmail()==null||empDetails.getBloodGroup()==null||empDetails.getCreatedBy()<0||empDetails.getFirstName()==null||empDetails.getGender()==null||empDetails.getMartialStatus()==null||empDetails.getDob()==null||empDetails.getContact()==null||empDetails.getAddress()==null){
+            throw new RuntimeException("Some values are null, fill all fields");
+        }
         return employeeService.save(empDetails);
     }
 
