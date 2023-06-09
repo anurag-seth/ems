@@ -20,8 +20,9 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <p *ngIf="showMessage">Showing preview image</p>
             <div class="form-inline" style="margin-top: 15px; justify-content: center; text-align: center;">
-              <button (click)="onUpload()" class="btn btn-success">Upload</button>
+              <button (click)="onUpload()" class="btn btn-outline-success">Upload</button>
             </div>
           </div>                 
         </div>

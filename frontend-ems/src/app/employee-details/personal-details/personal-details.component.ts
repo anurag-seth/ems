@@ -12,7 +12,9 @@ import { HttpClient } from '@angular/common/http';
 export class PersonalDetailsComponent {
   employee: Employee;
   profilePic: any;
+  tempProfilePic: any;
   showAlert: boolean = false;
+  showMessage: boolean = false;
   file: File | undefined;
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -35,6 +37,7 @@ export class PersonalDetailsComponent {
       const reader = new FileReader();
       reader.onload = (res: any) => {
         this.profilePic = res.target.result;
+        this.tempProfilePic = this.profilePic
       };
       reader.readAsDataURL(imageData);
     });
@@ -52,6 +55,9 @@ export class PersonalDetailsComponent {
       this.profilePic = res.target.result;
     };
     reader.readAsDataURL(this.file);
+    if(this.file){
+      this.showMessage = true;
+    }
   }
 
   updateImage() {
@@ -60,6 +66,8 @@ export class PersonalDetailsComponent {
 
   closeAlert() {
     this.showAlert = false;
+    this.showMessage = false;
+    this.profilePic = this.tempProfilePic;
   }
 
   onUpload() {
@@ -72,5 +80,6 @@ export class PersonalDetailsComponent {
       });
     }
     this.showAlert = false;
+    this.showMessage = false;
   }
 }
