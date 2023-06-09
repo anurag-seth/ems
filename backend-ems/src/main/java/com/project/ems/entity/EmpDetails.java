@@ -3,6 +3,7 @@ package com.project.ems.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,9 +36,11 @@ public class EmpDetails {
      * store first name of employee, can't be null.
      */
     @Column(name="first_name", nullable = false)
+    @Pattern(regexp = "^[a-zA-Z]{3,10}$", message = "name must be of 3 to 10 length with no special characters")
     private String firstName;
 
     @Column(name="last_name")
+    @Pattern(regexp = "^[a-zA-Z]{3,10}$", message = "name must be of 3 to 10 length with no special characters and numbers")
     private String lastName;
 
     /**

@@ -2,6 +2,7 @@ package com.project.ems.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +38,7 @@ public class Contact {
      * used to store the phone number.
      */
     @Column(name="phn_number", nullable = false)
+    @Pattern(regexp = "^[0-9]{9,10}$", message = "contact must be of length 10 with no special characters and alphabets")
     private String number;
 
     /**

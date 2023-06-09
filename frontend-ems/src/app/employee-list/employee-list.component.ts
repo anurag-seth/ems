@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Employee } from '../employee-details/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +12,8 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[];
   role: string;
   search: string = '';
-  currentPage: number = 1;
-  pageSize: number = 5;
+  @ViewChild('fileInput') fileInput: ElementRef;
+  profilePics: Map<String, String> = new Map<String, String>();
 
   constructor(
     private employeeService: EmployeeService,
@@ -24,10 +24,31 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((result: Employee[]) => {
       this.employees = result;
+      this.employeeImages();
     });
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);
     });
+  }
+
+  employeeImages(): void {
+    this.employees.forEach((employee: Employee) => {
+      this.employeeService.viewImage(employee.email).subscribe((imageData: Blob) => {
+        const reader = new FileReader();
+        reader.onload = (res: any) => {
+          this.profilePics.set(employee.email, res.target.result);
+        };
+        reader.readAsDataURL(imageData);
+      });
+    });
+  }
+
+  getProfilePic(email: String, gender: String): String {
+    const profilePic = this.profilePics.get(email);
+    if(gender=='Male'){
+      return profilePic?profilePic:'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp';
+    }
+    return profilePic?profilePic:'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp';
   }
 
   get filteredEmployees(): Employee[] {

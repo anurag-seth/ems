@@ -14,12 +14,16 @@
             </div>
           </div>
           <div class="alert alert-warning alert-dismissible fade show" *ngIf="showAlert" role="alert">
-            <button type="button" class="close" style="float: right; margin-bottom: 10px;" (click)="closeAlert()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <input class="form-control" type="file" (change)="onChange($event)">
-            <button (click)="onUpload()" class="btn btn-success">Upload</button>
-          </div>
+            <div class="form-inline" style="margin-top: 15px; justify-content: center; text-align: center;">
+              <input class="form-control" type="file" (change)="onChange($event)">
+              <button type="button" class="close" style="float: right; margin-bottom: 10px;" (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="form-inline" style="margin-top: 15px; justify-content: center; text-align: center;">
+              <button (click)="onUpload()" class="btn btn-success">Upload</button>
+            </div>
+          </div>                 
         </div>
         <div class="col-lg-8">
           <div class="card mb-4">
