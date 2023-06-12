@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthguardService } from './services/authguard.service';
 import { LoginguardService } from './services/loginguard.service';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PersonalDetailsComponent } from './employee-details/personal-details/personal-details.component';

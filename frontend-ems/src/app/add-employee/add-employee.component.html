@@ -127,8 +127,8 @@
                             <input type="text" id="dob" class="form-control" [(ngModel)]="newEmployee.dob" name="dob" required>
                         </div>
                     </div>
-                    <div class="submit" style="justify-content: center; text-align: center;" *ngIf="showButton()">
-                        <button type="submit" class="btn btn-outline-primary" [disabled]="!f.valid">Add Employee</button>
+                    <div class="submit" style="justify-content: center; text-align: center;" >
+                        <button type="submit" class="btn btn-outline-primary" [disabled]="!showButton()">Add Employee</button>
                     </div>
                     
                 </div>

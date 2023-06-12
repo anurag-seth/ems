@@ -14,6 +14,10 @@ export class EmployeeListComponent implements OnInit {
   search: string = '';
   @ViewChild('fileInput') fileInput: ElementRef;
   profilePics: Map<String, String> = new Map<String, String>();
+  pageSize = 3;
+  totalSize=0;
+  index = 0;
+  sliceEmployeeList;
 
   constructor(
     private employeeService: EmployeeService,
@@ -24,7 +28,9 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((result: Employee[]) => {
       this.employees = result;
+      this.totalSize = result.length;
       this.employeeImages();
+      this.sliceEmployeeList = this.sliceList;
     });
     this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);
@@ -74,5 +80,16 @@ export class EmployeeListComponent implements OnInit {
 
   showFullDetails(id: number): void {
     this.router.navigate(['/home-page/employee-details', id]);
+  }
+  onChange(e) {
+    this.index = +e.index;
+    this.pageSize = +e.pageSize;
+    this.sliceEmployeeList = this.sliceList;
+  }
+
+  get sliceList() {
+    const startIndex = this.index * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.filteredEmployees.slice(startIndex, endIndex).slice();
   }
 }

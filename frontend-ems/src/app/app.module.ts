@@ -17,6 +17,7 @@ import { PersonalDetailsComponent } from './employee-details/personal-details/pe
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './add-employee/update-employee/update-employee.component';
 import { MainPageComponent } from './home-page/main-page/main-page.component';
+import { PaginatorComponent } from './employee-list/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MainPageComponent } from './home-page/main-page/main-page.component';
     AddEmployeeComponent,
     UpdateEmployeeComponent,
     MainPageComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
