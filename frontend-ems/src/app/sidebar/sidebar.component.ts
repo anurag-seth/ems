@@ -14,12 +14,12 @@ export class SidebarComponent implements OnInit{
               private activatedRoute: ActivatedRoute){}
   
   ngOnInit(): void {
-    this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res=>{
+    this.employeeService.getEmployeeByEmail(localStorage.getItem('user')).subscribe(res=>{
       this.role =res.role.slice(5);
     });
   }
   personalDetails(){
-    let email = sessionStorage.getItem('user');
+    let email = localStorage.getItem('user');
   }
 }
 

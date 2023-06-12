@@ -26,7 +26,7 @@ export class PersonalDetailsComponent {
   ) {}
 
   ngOnInit(): void {
-    let email = sessionStorage.getItem('user');
+    let email = localStorage.getItem('user');
     
     this.employeeService.getEmployeeByEmail(email).subscribe((emp) => {
       this.employee = emp;

@@ -9,7 +9,7 @@ export class AuthguardService{
 
   constructor(private loginService:LoginService, private router: Router) { }
   canActivate(): boolean{
-    const isAuthenticated = sessionStorage.getItem("sessionId");
+    const isAuthenticated = localStorage.getItem("sessionId");
     
     if (!isAuthenticated) {
       // User is not authenticated, redirect to the login page

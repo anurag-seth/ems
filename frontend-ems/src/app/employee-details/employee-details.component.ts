@@ -22,7 +22,7 @@ export class EmployeeDetailsComponent implements OnInit{
     this.activatedRoute.params.subscribe((param)=>{
       this.id=+param['id'];
     });
-    let email = sessionStorage.getItem('user');
+    let email = localStorage.getItem('user');
     this.employeeService.getEmployeeById(this.id).subscribe((emp)=>{
       this.employee = emp;
       this.active = emp.active==true?'Active':'Not Active';

@@ -32,7 +32,7 @@ export class EmployeeListComponent implements OnInit {
       this.employeeImages();
       this.sliceEmployeeList = this.sliceList;
     });
-    this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
+    this.employeeService.getEmployeeByEmail(localStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);
     });
   }

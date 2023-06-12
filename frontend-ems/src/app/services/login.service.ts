@@ -16,13 +16,13 @@ export class LoginService {
 
   login(payLoad:{email:string, password:string}): Observable<any>{
     return this.http.post<any>(this.base_url + "/ems/login",payLoad).pipe(map((res)=>{
-      sessionStorage.setItem('user', payLoad.email);
-      sessionStorage.setItem('sessionId', res.sessionId);
+      localStorage.setItem('user', payLoad.email);
+      localStorage.setItem('sessionId', res.sessionId);
       this.isAuthen = true;
     }));
   }
   logout(){
-    sessionStorage.clear();
+    localStorage.clear();
     this.isAuthen = false;
     this.router.navigateByUrl('/login');
 
@@ -31,10 +31,10 @@ export class LoginService {
     return this.isAuthen;
   }
   isUserLogIn(){
-    return sessionStorage.getItem('sessionId')!==null;
+    return localStorage.getItem('sessionId')!==null;
   }
   geSessionId(){
-    let id = sessionStorage.getItem('sessionId') as string;
+    let id = localStorage.getItem('sessionId') as string;
     return id;
   }
 }

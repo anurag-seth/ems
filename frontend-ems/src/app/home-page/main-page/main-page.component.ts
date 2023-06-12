@@ -12,7 +12,7 @@ export class MainPageComponent implements OnInit{
   constructor(private employeeService: EmployeeService){}
   
   ngOnInit(): void {
-    this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res=>{
+    this.employeeService.getEmployeeByEmail(localStorage.getItem('user')).subscribe(res=>{
       this.name = res.firstName + " " + res.lastName;
     });
   }

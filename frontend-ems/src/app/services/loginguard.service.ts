@@ -9,7 +9,7 @@ export class LoginguardService {
 
   constructor(private loginService:LoginService, private router: Router) { }
   canActivate(): boolean{
-    const sessionId = sessionStorage.getItem('sessionId');
+    const sessionId = localStorage.getItem('sessionId');
     if(sessionId) {
       this.router.navigate(['/home-page']);
       return false;

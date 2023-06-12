@@ -9,7 +9,7 @@ export class AuthInterceptorService implements HttpInterceptor{
 
   constructor() { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const sessionId = sessionStorage.getItem('sessionId');
+    const sessionId = localStorage.getItem('sessionId');
 
     if (sessionId) {
       request = request.clone({

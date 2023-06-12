@@ -21,7 +21,7 @@ export class EmployeeService {
   }
 
   updateImage(formData: FormData):Observable<any>{
-    let email = sessionStorage.getItem('user');
+    let email = localStorage.getItem('user');
     return this.http.post<any>(`${this.base_url}/updateImage/${email}`, formData);
   }
 

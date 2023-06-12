@@ -38,7 +38,7 @@ export class UpdateEmployeeComponent implements OnInit{
         };
         reader.readAsDataURL(imageData);
       });
-      this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
+      this.employeeService.getEmployeeByEmail(localStorage.getItem('user')).subscribe(res => {
         this.role = res.role.slice(5);
       });
       this.employeeService.getEmployeeById(emp1.createdBy).subscribe((emp2)=>{

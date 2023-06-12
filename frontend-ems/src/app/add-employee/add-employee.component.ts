@@ -45,7 +45,7 @@ export class AddEmployeeComponent implements OnInit{
               private router: Router,
               private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
-    this.employeeService.getEmployeeByEmail(sessionStorage.getItem('user')).subscribe(res => {
+    this.employeeService.getEmployeeByEmail(localStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);
       this.createdBy = res.id;
     });
