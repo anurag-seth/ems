@@ -29,6 +29,10 @@ export class EmployeeService {
     return this.http.put<NewEmployee>(`${this.base_url}/update`, newEmployee);
   }
 
+  searchEmailExists(email: String){
+    return this.http.get<boolean>(`${this.base_url}/searchEmail/${email}`);
+  }
+
   getEmployeeByEmail(email: String){
     return this.http.get<any>(`${this.base_url}/findByEmail/${email}`).pipe(map((res) => {
       return {id:res.id, empId:res.empId, firstName: res.firstName, lastName: res.lastName, email: res.email, role:res.role, bloodGroup:res.bloodGroup, gender:res.gender, martialStatus:res.martialStatus, dob:res.dob,active:res.active,createdBy:res.createdBy,createdOn: res.createdOn,updatedOn: res.updatedOn,

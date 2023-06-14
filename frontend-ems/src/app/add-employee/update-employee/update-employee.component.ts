@@ -48,6 +48,7 @@ export class UpdateEmployeeComponent implements OnInit{
   }
 
   onSubmit(): void {
+    console.log(this.newEmployee);
     this.employeeService.updateEmployee(this.newEmployee).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/home-page/employee-details',this.newEmployee.id]);

@@ -5,6 +5,7 @@ import com.project.ems.entity.Address;
 import com.project.ems.entity.Contact;
 import com.project.ems.entity.EmpDetails;
 import com.project.ems.repositories.AddressRepository;
+import com.project.ems.repositories.EmployeeRepository;
 import com.project.ems.services.AddressService;
 import com.project.ems.services.ContactService;
 import com.project.ems.services.EmployeeService;
@@ -31,6 +32,9 @@ import java.util.Optional;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
     @Autowired
     private AddressService addressService;
     @Autowired
@@ -55,9 +59,20 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
     }
 
+    @GetMapping("/searchEmail/{email}")
+    public boolean searchEmailExists(@PathVariable String email){
+        boolean emailExists = false;
+        Optional<EmpDetails> empDetails = employeeRepository.findByEmail(email);
+        if(empDetails.isPresent())
+            emailExists =  true;
+        return emailExists;
+    }
+
     @GetMapping("/viewImage/{email}")
     public ResponseEntity<byte[]> viewImage(@PathVariable String email) {
         byte[] image = employeeService.viewImage(email);
+        if(image==null)
+            return ResponseEntity.notFound().build();
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
     }
 
@@ -100,6 +115,7 @@ public class EmployeeController {
     @PutMapping("/update")
     public EmpDetails updateEmployee(@RequestBody EmpDetails empDetails){
         empDetails.setRole(empDetails.getRole().toUpperCase(Locale.ROOT));
+        empDetails.setImage(employeeRepository.findByEmail(empDetails.getEmail()).get().getImage());
         return employeeService.save(empDetails);
     }
 

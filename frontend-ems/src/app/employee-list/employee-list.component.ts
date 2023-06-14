@@ -14,7 +14,7 @@ export class EmployeeListComponent implements OnInit {
   search: string = '';
   @ViewChild('fileInput') fileInput: ElementRef;
   profilePics: Map<String, String> = new Map<String, String>();
-  pageSize = 3;
+  pageSize=5;
   totalSize=0;
   index = 0;
   sliceEmployeeList;
@@ -81,6 +81,7 @@ export class EmployeeListComponent implements OnInit {
   showFullDetails(id: number): void {
     this.router.navigate(['/home-page/employee-details', id]);
   }
+  
   onChange(e) {
     this.index = +e.index;
     this.pageSize = +e.pageSize;

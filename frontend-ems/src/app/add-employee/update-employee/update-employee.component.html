@@ -97,6 +97,7 @@
                                 <label class="col-4" for="role">Role</label>
                                 <div class="col-8">
                                     <select id="role" class="form-select" [(ngModel)]="newEmployee.role" name="role">
+                                        <option>Select role</option>
                                         <option value="employee">Employee</option>
                                         <option value="admin">Admin</option>
                                         <option value="superadmin" *ngIf="role=='SUPER-ADMIN'">Superadmin</option>

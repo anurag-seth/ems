@@ -80,6 +80,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public byte[] viewImage(String email) {
         Optional<EmpDetails> empDetails = employeeRepository.findByEmail(email);
-        return ImageUtil.decompressImage(empDetails.get().getImage());
+        if(empDetails.get().getImage()!=null){
+            return ImageUtil.decompressImage(empDetails.get().getImage());
+        }
+        return null;
     }
 }

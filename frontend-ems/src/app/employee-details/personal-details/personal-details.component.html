@@ -4,7 +4,11 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img id="profileImage" [src]="profilePic" alt="Image" class="rounded-circle img-fluid" style="height:140px; width: 140px;">
+              <img id="profileImage" [src]="profilePic" alt="Image" class="rounded-circle img-fluid" style="height:140px; width: 140px;" *ngIf=profilePic>
+              <div *ngIf="profilePic==null">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" *ngIf="employee.gender=='Male'" class="rounded-circle img-fluid" style="width: 150px;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp" alt="avatar" *ngIf="employee.gender=='Female'" class="rounded-circle img-fluid" style="width: 150px;">
+              </div>
               <h5 class="my-3">{{employee.firstName}} {{employee.lastName}}</h5>
               <p class="text-capitalize text-muted mb-1 bold">{{employee.role}}</p>
               <div class="d-flex justify-content-center mb-2 mt-3">
@@ -103,6 +107,7 @@
               </div>
             </div>
           </div>
+          <button class="btn btn-outline-primary update">Update password</button>
           <!-- <div class="row">
             <div class="col-md-12">
               <div class="card mb-4 mb-md-0">

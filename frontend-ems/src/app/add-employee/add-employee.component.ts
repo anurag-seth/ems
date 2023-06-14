@@ -14,6 +14,8 @@ export class AddEmployeeComponent implements OnInit{
   employees: Employee[];
   role: string;
   createdBy: number;
+  showExists: boolean = false;
+  showNotExists: boolean = false;
   newEmployee: NewEmployee = {
     empId: 0,
     firstName: '',
@@ -51,15 +53,31 @@ export class AddEmployeeComponent implements OnInit{
     });
   }
 
+  check(): void{
+    console.log(this.newEmployee.email);
+    this.showExists = false;
+    this.showNotExists = false;
+    this.employeeService.searchEmailExists(this.newEmployee.email)
+    .subscribe(
+      (response: boolean) => {
+        if(response==true)
+          this.showExists = true;
+        else
+          this.showNotExists = true;
+      }
+    );
+  }
+
   showButton(): boolean{
-    if(this.newEmployee.firstName==''||this.newEmployee.lastName==''||this.newEmployee.email==''||this.newEmployee.password==''||this.newEmployee.bloodGroup==''||this.newEmployee.gender==''||this.newEmployee.dob==''||this.newEmployee.address.addressLine1==''||this.newEmployee.address.addressLine2==''||this.newEmployee.address.city==''||this.newEmployee.address.pincode==''||this.newEmployee.address.state==''||this.newEmployee.contact.number==''){
+    if(this.newEmployee.firstName==''||this.newEmployee.lastName==''||this.newEmployee.email==''||this.newEmployee.gender==''||this.newEmployee.dob==''||this.newEmployee.address.addressLine1==''||this.newEmployee.address.addressLine2==''||this.newEmployee.address.city==''||this.newEmployee.address.pincode==''||this.newEmployee.address.state==''||this.newEmployee.contact.number==''){
       return false;
     }
     return true;
   }
   onSubmit(): void {
+    this.newEmployee.password = "test@123";
     this.newEmployee.createdBy = this.createdBy;
-    console.log(this.newEmployee);
+    // console.log(this.newEmployee);
     this.employeeService.addEmployee(this.newEmployee).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/home-page/employee-list']);
