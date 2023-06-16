@@ -6,6 +6,7 @@ import com.project.ems.entity.Contact;
 import com.project.ems.entity.EmpDetails;
 import com.project.ems.repositories.AddressRepository;
 import com.project.ems.repositories.EmployeeRepository;
+import com.project.ems.security.WebSecurityConfig;
 import com.project.ems.services.AddressService;
 import com.project.ems.services.ContactService;
 import com.project.ems.services.EmployeeService;
@@ -32,7 +33,6 @@ import java.util.Optional;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
-
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
@@ -83,6 +83,19 @@ public class EmployeeController {
     @GetMapping("/find/{id}")
     public EmpDetails findEmployee(@PathVariable int id){
         return employeeService.findById(id);
+    }
+
+    @PostMapping("/checkPassword/{current}")
+    public boolean checkPassword(@RequestParam("email") String email, @PathVariable String current){
+        return employeeService.checkPassword(current, email);
+    }
+
+    @PutMapping("/updatePassword/{newPassword}")
+    public EmpDetails updatePassword(@RequestParam("email") String email, @PathVariable String newPassword){
+        EmpDetails emp = employeeService.findByEmail(email);
+        emp.setPassword(newPassword);
+        emp.setRole(emp.getRole().substring(5));
+        return employeeService.save(emp);
     }
 
     @GetMapping("/findByEmail/{email}")

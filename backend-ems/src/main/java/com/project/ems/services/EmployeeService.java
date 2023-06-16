@@ -40,4 +40,6 @@ public interface EmployeeService {
 
     byte[] viewImage(String email);
 
+    boolean checkPassword(String password, String email);
+
 }

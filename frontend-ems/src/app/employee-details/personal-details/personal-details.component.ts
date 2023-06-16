@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { HttpClient } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @Component({
   selector: 'app-personal-details',
@@ -22,7 +24,8 @@ export class PersonalDetailsComponent {
     private employeeService: EmployeeService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +82,9 @@ export class PersonalDetailsComponent {
     }
     this.showAlert = false;
     this.showMessage = false;
+  }
+
+  updatePassword(){
+    this.modalService.open(UpdatePasswordComponent);
   }
 }

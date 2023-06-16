@@ -18,6 +18,7 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './add-employee/update-employee/update-employee.component';
 import { MainPageComponent } from './home-page/main-page/main-page.component';
 import { PaginatorComponent } from './employee-list/paginator/paginator.component';
+import { UpdatePasswordComponent } from './employee-details/personal-details/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PaginatorComponent } from './employee-list/paginator/paginator.componen
     AddEmployeeComponent,
     UpdateEmployeeComponent,
     MainPageComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,

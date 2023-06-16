@@ -85,4 +85,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return null;
     }
+
+    @Override
+    public boolean checkPassword(String password, String email) {
+        return webSecurityConfig.passwordEncoder().matches(password, employeeRepository.findByEmail(email).get().getPassword());
+    }
 }
+

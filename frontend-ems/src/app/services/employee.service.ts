@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -14,6 +14,16 @@ export class EmployeeService {
   constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
   addEmployee(employee: NewEmployee): Observable<NewEmployee> {
     return this.http.post<NewEmployee>(`${this.base_url}/add`, employee);
+  }
+
+  checkPassword(password: String){
+    const formData = new FormData();
+    formData.append('email', localStorage.getItem('user'));
+    return this.http.post<boolean>(`${this.base_url}/checkPassword/${password}`, formData);
+  }
+
+  updatePassword(password: String, formData: FormData): Observable<any>{
+    return this.http.put<any>(`${this.base_url}/updatePassword/`+password, formData);
   }
 
   viewImage(email: String){

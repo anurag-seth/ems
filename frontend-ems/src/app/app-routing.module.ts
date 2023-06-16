@@ -10,6 +10,7 @@ import { PersonalDetailsComponent } from './employee-details/personal-details/pe
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './add-employee/update-employee/update-employee.component';
 import { MainPageComponent } from './home-page/main-page/main-page.component';
+import { UpdatePasswordComponent } from './employee-details/personal-details/update-password/update-password.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
     {path:'employee-list', component:EmployeeListComponent},
     {path:'employee-details/:id', component:EmployeeDetailsComponent},
     {path:'add-employee', component: AddEmployeeComponent},
-    {path:'update-employee/:id', component: UpdateEmployeeComponent}
+    {path:'update-employee/:id', component: UpdateEmployeeComponent},
+    {path:'update-password', component: UpdatePasswordComponent}
   ]}
 ];
 @NgModule({
