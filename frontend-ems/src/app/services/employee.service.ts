@@ -11,7 +11,10 @@ import { Employee } from '../employee-details/employee.model';
 })
 export class EmployeeService {
   base_url="http://localhost:8080/employees";
-  constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, 
+              private router: Router, 
+              private activatedRoute: ActivatedRoute) { }
+              
   addEmployee(employee: NewEmployee): Observable<NewEmployee> {
     return this.http.post<NewEmployee>(`${this.base_url}/add`, employee);
   }

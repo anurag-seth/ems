@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
+import { Component} from '@angular/core'
 
 @Component({
   selector: 'app-home-page',
@@ -9,5 +8,5 @@ import { EmployeeService } from '../services/employee.service';
 export class HomePageComponent{
   username: String="";
   sidebarOpened = false;
-  constructor(private employeeService: EmployeeService){}
+  constructor(){}
 }

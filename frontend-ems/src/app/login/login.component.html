@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
           <form #loginForm="ngForm" [formGroup]="login" (ngSubmit)="onSubmit()">
-            <h2>LogIn</h2>
+            <h2 style="margin-bottom: 20px;">LogIn</h2>
 
             <div class="form-outline mb-4">
               <input type="email" formControlName="email" id="email" class="form-control form-control-lg"
@@ -28,9 +28,7 @@
                   Remember me
                 </label>
               </div>
-              <!-- <a href="#!" class="text-body">Forgot password?</a> -->
             </div>
-  
             <div class="text-center text-lg-start mt-4 pt-2">
               <button type="submit" class="btn btn-primary btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="!loginForm.valid">Login</button>

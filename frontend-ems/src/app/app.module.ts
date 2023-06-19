@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { LoginService } from './services/login.service';
@@ -19,6 +19,8 @@ import { UpdateEmployeeComponent } from './add-employee/update-employee/update-e
 import { MainPageComponent } from './home-page/main-page/main-page.component';
 import { PaginatorComponent } from './employee-list/paginator/paginator.component';
 import { UpdatePasswordComponent } from './employee-details/personal-details/update-password/update-password.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { UpdatePasswordComponent } from './employee-details/personal-details/upd
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     LoginService,

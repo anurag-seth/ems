@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import { EmployeeService } from '../services/employee.service';
 import { NewEmployee } from '../employee-details/new-employee.model';
 import { Employee } from '../employee-details/employee.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-employee',
@@ -45,7 +45,8 @@ export class AddEmployeeComponent implements OnInit{
 
   constructor(private employeeService: EmployeeService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute,
+              private toastr: ToastrService) {}
   ngOnInit(): void {
     this.employeeService.getEmployeeByEmail(localStorage.getItem('user')).subscribe(res => {
       this.role = res.role.slice(5);
@@ -77,12 +78,11 @@ export class AddEmployeeComponent implements OnInit{
   onSubmit(): void {
     this.newEmployee.password = "test@123";
     this.newEmployee.createdBy = this.createdBy;
-    // console.log(this.newEmployee);
     this.employeeService.addEmployee(this.newEmployee).subscribe((res) => {
-      console.log(res);
+      this.toastr.success('Employee added');
       this.router.navigate(['/home-page/employee-list']);
     }, error => {
-      console.log("Either empid or email exists");
+      this.toastr.error('Employee id or email exists already');
     });
   }
 }

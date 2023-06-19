@@ -1,7 +1,4 @@
 <div class="sidebar" appToggle>
-  <!-- <div class="info">
-    <h3>Hello User</h3>
-  </div> -->
   <ul class="nav-links">
     <li *ngIf="role!='EMPLOYEE'">
       <a routerLink="/home-page/add-employee">
@@ -12,18 +9,14 @@
     <li>
       <a routerLink="/home-page/employee-list">
         <i class="fa fa-solid fa-clipboard"></i>
-        <!-- <i class="fa fa-solid fa-table"></i> -->
         <span class="link_name">Employee List</span>
       </a>
     </li>
     <li>
       <a routerLink="/home-page/personal-details">
         <i class='fa fa-user'></i>
-        <!-- <i class="fa fa-regular fa-user-pen"></i> -->
         <span class="link_name">Personal Details</span>
       </a>
     </li>
   </ul>
 </div>
-<!-- <a routerLink="/home-page/personal-details"></a> -->
-<!-- <i class="fa-regular fa-user-pen"></i> -->

@@ -23,7 +23,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<ResponseDto> login(@RequestBody UserDto user){
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
         authenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
         final String sessionID = sessionRegistry.registerSession(user.getEmail());
         ResponseDto response = new ResponseDto();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit{
   constructor(private route: ActivatedRoute, 
               private router: Router, 
               private loginService: LoginService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private toastr: ToastrService) {
     this.login = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit{
     }
     this.loginService.login(this.login.value).subscribe((res) => {
       this.router.navigate(['/home-page']),() => {
+        this.toastr.error('Wrong credentials');
 				this.error = 'Either invalid credentials or something went wrong';
 			}
     });

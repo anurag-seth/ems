@@ -4,6 +4,7 @@ import { Employee } from '../../employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { NewEmployee } from '../../new-employee.model';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-password',
@@ -20,7 +21,8 @@ export class UpdatePasswordComponent implements OnInit{
   showCurrentPasswordNotMatch: boolean = false;
   constructor(public employeeService: EmployeeService,
               public activeModal: NgbActiveModal,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -58,7 +60,6 @@ export class UpdatePasswordComponent implements OnInit{
         this.showCurrentPasswordMatch = true;
       }
       this.exist = res;
-      console.log(this.exist);
     });
   }
 
@@ -84,7 +85,9 @@ export class UpdatePasswordComponent implements OnInit{
     const formData = new FormData();
     formData.append('email', localStorage.getItem('user'));
     this.employeeService.updatePassword(this.confirmPassword, formData).subscribe(res=>{
-      console.log(res);
+      this.toastr.success('Changed password');
+    },error=>{
+      this.toastr.error('Password not changed');
     });
     this.activeModal.close();
   }

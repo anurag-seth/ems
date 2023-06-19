@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 
@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit{
       this.role =res.role.slice(5);
     });
   }
+  
   personalDetails(){
     let email = localStorage.getItem('user');
   }

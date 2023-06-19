@@ -32,31 +32,11 @@ public class SecurityConfig {
     private WebSecurityConfig webSecurityConfig;
     @Bean
     public UserDetailsService user(){
-//        UserDetails admin = User.withUsername("anurag")
-//                .password(passwordEncoder.encode("anurag123"))
-//                .roles("ADMIN")
-//                .build();
-//        UserDetails user = User.withUsername("anuj")
-//                .password(passwordEncoder.encode("anuj123"))
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
         return new EmployeeInfoDetailsService();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//                .exceptionHandling().authenticationEntryPoint(
-//                        (request,response,ex)->{
-//                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,ex.getMessage());
-//                        }
-//                ).and()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/employees/**").authenticated()
-//                .and().httpBasic().and().formLogin();
-//                http.addFilterBefore(sessionFilter, UsernamePasswordAuthenticationFilter.class);
-//                return http.build();
         http = http.cors().and().csrf().disable();
         http = http.exceptionHandling().authenticationEntryPoint(
                 (request,response,ex)->{

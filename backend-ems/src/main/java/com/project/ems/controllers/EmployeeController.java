@@ -68,6 +68,7 @@ public class EmployeeController {
         return emailExists;
     }
 
+    @ResponseStatus(value= HttpStatus.OK)
     @GetMapping("/viewImage/{email}")
     public ResponseEntity<byte[]> viewImage(@PathVariable String email) {
         byte[] image = employeeService.viewImage(email);

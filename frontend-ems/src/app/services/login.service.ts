@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Route, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,9 @@ import { Route, Router } from '@angular/router';
 export class LoginService {
   base_url="http://localhost:8080";
   private isAuthen: boolean = false;
-  constructor(private http: HttpClient,private router:Router) {
 
-   }
+  constructor(private http: HttpClient,
+              private router:Router) {}
 
   login(payLoad:{email:string, password:string}): Observable<any>{
     return this.http.post<any>(this.base_url + "/ems/login",payLoad).pipe(map((res)=>{
@@ -21,18 +21,22 @@ export class LoginService {
       this.isAuthen = true;
     }));
   }
+
   logout(){
     localStorage.clear();
     this.isAuthen = false;
     this.router.navigateByUrl('/login');
 
   }
+
   isAuthenticated(): boolean{
     return this.isAuthen;
   }
+
   isUserLogIn(){
     return localStorage.getItem('sessionId')!==null;
   }
+  
   geSessionId(){
     let id = localStorage.getItem('sessionId') as string;
     return id;

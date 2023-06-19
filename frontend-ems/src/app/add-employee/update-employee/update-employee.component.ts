@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Employee } from 'src/app/employee-details/employee.model';
-import { NewEmployee } from 'src/app/employee-details/new-employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -19,7 +19,8 @@ export class UpdateEmployeeComponent implements OnInit{
   employeeEmail: String
   constructor(private employeeService : EmployeeService, 
               private router: Router, 
-              private activatedRoute: ActivatedRoute){}
+              private activatedRoute: ActivatedRoute,
+              private toastr: ToastrService){}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((param)=>{
@@ -50,10 +51,10 @@ export class UpdateEmployeeComponent implements OnInit{
   onSubmit(): void {
     console.log(this.newEmployee);
     this.employeeService.updateEmployee(this.newEmployee).subscribe((res) => {
-      console.log(res);
+      this.toastr.success('Information updated');
       this.router.navigate(['/home-page/employee-details',this.newEmployee.id]);
     }, error => {
-      console.log("Either empid or email exists");
+      this.toastr.error('Employee id or email exists already');
     });
   }
 

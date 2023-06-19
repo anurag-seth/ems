@@ -15,10 +15,6 @@ import java.util.Optional;
 public class EmployeeInfoDetailsService implements UserDetailsService {
     @Autowired
     private EmployeeRepository employeeRepository;
-//    @Autowired
-//    public EmployeeInfoDetailsService(EmployeeRepository theEmployeeRepository){
-//        this.employeeRepository = theEmployeeRepository;
-//    }
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<EmpDetails> emp = employeeRepository.findByEmail(email);

@@ -28,7 +28,6 @@ export class EmployeeDetailsComponent implements OnInit{
       this.active = emp.active==true?'Active':'Not Active';
       this.employeeEmail = emp.email;
       this.employeeService.viewImage(this.employeeEmail).subscribe((imageData: Blob) => {
-        console.log(this.employeeEmail);
         const reader = new FileReader();
         reader.onloadend = () => {
           this.profilePic = reader.result;
